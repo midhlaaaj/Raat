@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Italiana&family=Inter:wght@400;500;600&display=swap">
+<style>body{margin:0;background:#0C0B0A;color:#F4EEE2;font-family:Inter,sans-serif;}a{color:#F4EEE2;text-decoration:none;}a:hover{color:#C9A227;}</style>
+</helmet>
+<div style="background:#0C0B0A;color:#F4EEE2;min-height:100vh">
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1440px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+      <a href="RAAT Home.dc.html" style="position:relative;width:110px;height:26px;overflow:hidden;display:block">
+        <span style="{{ raatStyleLatin }}">RAAT</span><span style="{{ raatStyleDev }}">रात</span>
+      </a>
+      <nav style="display:flex;gap:36px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase">
+        <a href="RAAT Shop.dc.html">Shop</a><a href="RAAT Collection.dc.html">Collections</a><a href="RAAT Journal.dc.html">Journal</a><a href="RAAT About.dc.html">About</a><a href="RAAT Contact.dc.html">Contact</a>
+      </nav>
+      <div style="display:flex;gap:24px;align-items:center;font-size:13px">
+        <span style="cursor:pointer">Search</span>
+        <a href="RAAT Cart.dc.html" style="position:relative;cursor:pointer">Cart<span style="position:absolute;top:-10px;right:-16px;background:#C9A227;color:#0C0B0A;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600">2</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:1440px;margin:0 auto;padding:140px 40px 40px;font-size:0.8rem;color:#A79C8C">
+    <a href="RAAT Home.dc.html" style="color:#A79C8C">Home</a> / <a href="RAAT Collection.dc.html" style="color:#A79C8C">Zari</a> / <span style="color:#F4EEE2">Zari Thread Blouse</span>
+  </div>
+
+  <div style="max-width:1440px;margin:0 auto;padding:0 40px 120px;display:grid;grid-template-columns:1.3fr 1fr;gap:80px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <sc-for list="{{ galleryImages }}" as="img" hint-placeholder-count="3">
+        <div class="rv" style="opacity:0;transform:translateY(20px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);position:relative;aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center">
+          <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ img.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="position:sticky;top:120px;align-self:start">
+      <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:8px">Zari</div>
+      <h1 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:2rem;margin:0 0 12px">Zari Thread Blouse</h1>
+      <div style="font-size:1.2rem;color:#C9A227;margin-bottom:28px">\u20b911,200</div>
+
+      <div style="margin-bottom:24px">
+        <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:12px">Size</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="5">
+            <button onClick="{{ selectSize }}" data-val="{{ s }}" style="{{ sizeStyle(s) }}">{{ s }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin-bottom:32px">
+        <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:12px">Color</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <sc-for list="{{ colors }}" as="c" hint-placeholder-count="3">
+            <button onClick="{{ selectColor }}" data-val="{{ c }}" style="{{ colorStyle(c) }}">{{ c }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <div style="display:flex;align-items:center;border:1px solid #2C2825">
+          <button onClick="{{ decQty }}" style="background:none;border:none;color:#F4EEE2;width:40px;height:44px;font-size:1rem;cursor:pointer">-</button>
+          <span style="width:36px;text-align:center;font-size:0.95rem">{{ qty }}</span>
+          <button onClick="{{ incQty }}" style="background:none;border:none;color:#F4EEE2;width:40px;height:44px;font-size:1rem;cursor:pointer">+</button>
+        </div>
+      </div>
+
+      <button id="mainAddBtn" onClick="{{ addToCart }}" style="width:100%;background:#C9A227;color:#0C0B0A;border:none;padding:18px;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;cursor:pointer;margin-bottom:32px">{{ addLabel }}</button>
+
+      <div style="border-top:1px solid #2C2825;padding-top:24px;display:flex;flex-direction:column;gap:12px;font-size:0.85rem;color:#A79C8C">
+        <div>Handwoven by artisan partners in Varanasi</div>
+        <div>Free shipping on orders above \u20b95,000</div>
+        <div>7-day easy returns</div>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ showStickyBar }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(21,19,18,0.95);backdrop-filter:blur(10px);border-top:1px solid #2C2825;padding:16px 40px;display:flex;align-items:center;justify-content:space-between">
+      <div><div style="font-family:'Bodoni Moda',serif;font-size:1.05rem">Zari Thread Blouse</div><div style="font-size:0.85rem;color:#C9A227">\u20b911,200</div></div>
+      <button onClick="{{ addToCart }}" style="background:#C9A227;color:#0C0B0A;border:none;padding:14px 32px;font-size:0.8rem;letter-spacing:0.05em;text-transform:uppercase;font-weight:600;cursor:pointer">{{ addLabel }}</button>
+    </div>
+  </sc-if>
+
+  <div style="max-width:1440px;margin:0 auto;padding:0 40px 120px">
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(1.75rem,3vw,2.25rem);margin:0 0 40px">Complete the Look</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+      <sc-for list="{{ related }}" as="p" hint-placeholder-count="4">
+        <a href="RAAT Product.dc.html" class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);display:block">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center"><span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabel }}</span></div></div>
+          <div style="padding-top:16px"><h3 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.05rem;margin:0 0 8px">{{ p.name }}</h3><div style="font-size:0.9rem">{{ p.price }}</div></div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <footer style="background:#151312;border-top:1px solid #2C2825;padding:64px 40px 32px">
+    <div style="max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center">
+      <div style="font-family:'Italiana',serif;font-size:1.1rem;letter-spacing:0.15em">RAAT</div>
+      <div style="font-size:0.75rem;color:#A79C8C">&copy; 2026 RAAT. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { headerScheme: 'transparent', headerHidden: false, glitchOn: false, script: 'latin', size: 'M', color: 'Maroon', qty: 1, showStickyBar: false, added: false };
+
+  componentDidMount() {
+    this._lastY = window.scrollY;
+    this._onScroll = () => {
+      const y = window.scrollY;
+      const scrolledDown = y > this._lastY;
+      const past = y > 80;
+      this.setState({ headerHidden: past && scrolledDown, headerScheme: past ? 'solid' : 'transparent' });
+      this._lastY = y;
+      const btn = document.getElementById('mainAddBtn');
+      if (btn) {
+        const rect = btn.getBoundingClientRect();
+        this.setState({ showStickyBar: rect.bottom < 0 });
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.style.cssText += ';opacity:1 !important;transform:none !important;'; });
+    }, { threshold: 0.12 });
+    this._observer = observer;
+    setTimeout(() => { document.querySelectorAll('.rv').forEach(el => observer.observe(el)); }, 50);
+    this._glitchLoop = () => {
+      this.setState({ glitchOn: true });
+      setTimeout(() => { this.setState(s => ({ glitchOn: false, script: s.script === 'latin' ? 'devanagari' : 'latin' })); }, 260);
+      this._glitchTimer = setTimeout(this._glitchLoop, 6000 + Math.random() * 4000);
+    };
+    this._glitchTimer = setTimeout(this._glitchLoop, 4000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._glitchTimer);
+    clearTimeout(this._addTimer);
+  }
+  renderVals() {
+    const headerSolid = this.state.headerScheme === 'solid';
+    const headerStyle = `position:fixed;top:0;left:0;right:0;z-index:50;transition:transform 400ms cubic-bezier(0.16,1,0.3,1),background-color 400ms,backdrop-filter 400ms;transform:translateY(${this.state.headerHidden ? '-100%' : '0'});background:${headerSolid ? 'rgba(21,19,18,0.9)' : 'transparent'};backdrop-filter:${headerSolid ? 'blur(10px)' : 'none'};border-bottom:${headerSolid ? '1px solid #2C2825' : 'none'}`;
+    const g = this.state.glitchOn;
+    const showLatin = this.state.script === 'latin';
+    const latinVisible = g ? !showLatin : showLatin;
+    const devVisible = g ? showLatin : !showLatin;
+    const raatStyleLatin = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.15em;color:#F4EEE2;transition:opacity 100ms;opacity:${latinVisible?1:0};transform:${g?'translate(-3px,1px)':'none'};filter:${g?'drop-shadow(2px 0 #6E1423) drop-shadow(-2px 0 #C9A227)':'none'}`;
+    const raatStyleDev = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.1em;color:#C9A227;transition:opacity 100ms;opacity:${devVisible?1:0};transform:${g?'translate(2px,-1px)':'none'}`;
+
+    const sizeStyle = (s) => `border:1px solid ${this.state.size===s?'#F4EEE2':'#2C2825'};background:transparent;color:#F4EEE2;padding:10px 18px;font-size:0.8rem;cursor:pointer`;
+    const colorStyle = (c) => `border:1px solid ${this.state.color===c?'#F4EEE2':'#2C2825'};background:transparent;color:#F4EEE2;padding:10px 18px;font-size:0.8rem;cursor:pointer`;
+
+    const related = [['Amavas Wrap Kurta','\u20b96,800'],['Neel Midnight Saree','\u20b98,400'],['Sanjh Dusk Jacket','\u20b99,600'],['Zari Bordered Saree','\u20b913,600']].map(([name,price]) => ({ name, price, imageLabel: `PRODUCT PHOTO \u2014 ${name}` }));
+
+    return {
+      headerStyle, raatStyleLatin, raatStyleDev, sizeStyle, colorStyle,
+      sizes: ['XS','S','M','L','XL'], colors: ['Maroon','Charcoal','Gold'],
+      qty: this.state.qty, showStickyBar: this.state.showStickyBar,
+      galleryImages: [1,2,3].map(i => ({ label: `PRODUCT PHOTO \u2014 Zari Thread Blouse, view ${i}` })),
+      related,
+      addLabel: this.state.added ? 'Added \u2713' : 'Add to Cart',
+      selectSize: (e) => this.setState({ size: e.currentTarget.dataset.val }),
+      selectColor: (e) => this.setState({ color: e.currentTarget.dataset.val }),
+      incQty: () => this.setState(s => ({ qty: s.qty + 1 })),
+      decQty: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+      addToCart: () => { this.setState({ added: true }); clearTimeout(this._addTimer); this._addTimer = setTimeout(() => this.setState({ added: false }), 1800); },
+    };
+  }
+}
+</script>
+</body>
+</html>

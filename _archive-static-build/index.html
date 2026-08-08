@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ROOH — Contemporary Indian Fashion</title>
+<meta name="description" content="ROOH is a contemporary Indian fashion label — hand-block prints, handloom textiles and considered silhouettes." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="announce">Handloom textiles, made to order · Free shipping across India</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">ROOH</a>
+    <nav class="main-nav">
+      <a href="shop.html">New Arrivals</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="about.html">Our Story</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn" data-open-cart aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobile-nav" class="mobile-nav">
+  <button class="mobile-nav__close" aria-label="Close menu" onclick="document.getElementById('mobile-nav').classList.remove('is-open');document.body.classList.remove('no-scroll')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <a href="shop.html">New Arrivals</a>
+  <a href="shop.html">Shop</a>
+  <a href="index.html#collections">Collections</a>
+  <a href="about.html">Our Story</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section class="hero">
+  <div class="hero__media"><img id="hero-img" src="" alt="ROOH new collection" /></div>
+  <div class="hero__content">
+    <p class="hero__eyebrow">The Terra Edit — New</p>
+    <h1>Woven for the way<br>you actually live.</h1>
+    <p>Hand-finished silhouettes in natural fibres — cut close to the body, built to move through every season without asking for attention.</p>
+    <a href="shop.html" class="btn btn--light">Shop the Edit</a>
+  </div>
+  <div class="hero__scroll"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<section class="section" id="iconic">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Signature</p>
+        <h2>Iconic by ROOH</h2>
+      </div>
+      <a href="shop.html" class="section-head__link">View all</a>
+    </div>
+    <div class="product-grid" id="iconic-grid" data-reveal></div>
+  </div>
+</section>
+
+<section class="section section--alt" id="new-arrivals">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Just In</p>
+        <h2>New Arrivals</h2>
+      </div>
+      <a href="shop.html" class="section-head__link">View all</a>
+    </div>
+    <div class="product-grid" id="new-grid" data-reveal></div>
+  </div>
+</section>
+
+<section class="section" id="collections">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Curated</p>
+        <h2>Shop by Collection</h2>
+      </div>
+    </div>
+    <div class="collection-grid" id="collection-grid" data-reveal></div>
+  </div>
+</section>
+
+<section class="section section--alt" id="categories">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Explore</p>
+        <h2>Shop by Category</h2>
+      </div>
+    </div>
+    <div class="category-strip" id="category-strip" data-reveal></div>
+  </div>
+</section>
+
+<section class="section" id="trending">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Most Loved</p>
+        <h2>Trending Now</h2>
+      </div>
+      <a href="shop.html" class="section-head__link">View all</a>
+    </div>
+    <div class="product-grid" id="trending-grid" data-reveal></div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="eyebrow">Reviews</p>
+        <h2>From Our Guests</h2>
+      </div>
+    </div>
+    <div class="testimonial-grid" data-reveal>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="quote">"The fabric alone is worth it — three washes in and the colour hasn't moved an inch."</p>
+        <p class="testimonial-card__name">Ananya R., Bengaluru</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="quote">"Finally a brand that fits Indian silhouettes without shouting about it. Understated and beautifully made."</p>
+        <p class="testimonial-card__name">Meher K., Mumbai</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="quote">"Ordered the Ochre kurta set for a friend's wedding — got asked about it all night."</p>
+        <p class="testimonial-card__name">Divya S., Ahmedabad</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="story" data-reveal>
+      <div class="story__media"><img id="story-img" src="" alt="ROOH atelier" /></div>
+      <div class="story__copy">
+        <p class="eyebrow">Our Story</p>
+        <h2>Made slowly, on purpose.</h2>
+        <p>ROOH began in a single room in Ahmedabad with two looms and a conviction: that clothes carry the hands that make them. Every piece is cut in small batches with weavers and block-printers we work with directly, season after season.</p>
+        <p>No overproduction. No dead stock. Just fabric that's meant to be lived in.</p>
+        <a href="about.html" class="btn btn--outline">Read our story</a>
+        <div class="story__stats">
+          <div><strong>120+</strong><span>Artisan Partners</span></div>
+          <div><strong>3</strong><span>Years, Slow-built</span></div>
+          <div><strong>0</strong><span>Dead Stock</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-band">
+  <div class="container">
+    <h2>Join the ROOH list</h2>
+    <p>First access to new collections, restocks and the occasional archive sale.</p>
+    <form class="newsletter-form" data-mock-form>
+      <input type="email" placeholder="Your email address" required />
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="form-success" data-form-success hidden>You're on the list — welcome to ROOH.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-statement">
+    <h2>Clothing built around the people who make it, and the ones who wear it.</h2>
+  </div>
+  <div class="container footer-columns">
+    <div class="footer-col">
+      <h4>ROOH</h4>
+      <p>Contemporary Indian fashion, woven and printed by hand in small batches out of Ahmedabad.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-3 1.5-5.5 1.5-7a2.5 2.5 0 015 0c0 2-1 3.5-2 4"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9h3V5h-3a4 4 0 00-4 4v2H7v4h3v6h4v-6h3l1-4h-4v-2a1 1 0 011-1z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="shop.html">New Arrivals</a></li>
+        <li><a href="index.html#collections">Collections</a></li>
+        <li><a href="shop.html">All Products</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Stockists</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <p>info@rooh-studio.com</p>
+      <p>+91 63553 53893</p>
+      <p>Mon – Sat, 11am – 6pm</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-wordmark">ROOH</div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 ROOH Studio. All rights reserved.</span>
+    <span>Design portfolio piece — not a live store.</span>
+  </div>
+</footer>
+
+<div id="drawer-overlay" class="drawer-overlay"></div>
+<aside id="cart-drawer" class="drawer" aria-label="Shopping cart">
+  <div class="drawer__head">
+    <h3>Your Cart</h3>
+    <button data-close-cart aria-label="Close cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer__body" id="cart-drawer-body"></div>
+  <div class="drawer__footer" id="cart-drawer-footer">
+    <div class="drawer__subtotal-row"><span>Subtotal</span><strong data-cart-subtotal>₹0</strong></div>
+    <a href="cart.html" class="btn btn--outline btn--full">View Cart</a>
+    <a href="checkout.html" class="btn btn--full">Checkout</a>
+  </div>
+</aside>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById("hero-img").src = HERO_IMAGE;
+  document.getElementById("story-img").src = STORY_IMAGE;
+
+  function renderProductCard(p) {
+    return `
+      <a href="product.html?id=${p.id}" class="product-card">
+        <div class="product-card__media">
+          ${p.tag ? `<span class="product-card__tag">${p.tag === "new" ? "New" : "Trending"}</span>` : ""}
+          <img src="${p.images[0]}" alt="${p.name}" loading="lazy" />
+          <span class="product-card__quick">View Product</span>
+        </div>
+        <p class="product-card__name">${p.name}</p>
+        <div class="product-card__meta">
+          <span class="product-card__category">${p.category}</span>
+          <span class="product-card__price">${formatPrice(p.price)}</span>
+        </div>
+      </a>`;
+  }
+
+  document.getElementById("iconic-grid").innerHTML = PRODUCTS.slice(0, 4).map(renderProductCard).join("");
+  document.getElementById("new-grid").innerHTML = PRODUCTS.filter(p => p.tag === "new").slice(0, 4).map(renderProductCard).join("");
+  document.getElementById("trending-grid").innerHTML = PRODUCTS.filter(p => p.tag === "trending").slice(0, 4).map(renderProductCard).join("");
+
+  document.getElementById("collection-grid").innerHTML = COLLECTIONS.map((c, i) => {
+    const sample = PRODUCTS.find(p => p.collection === c.slug);
+    return `
+      <a href="shop.html?collection=${c.slug}" class="collection-card">
+        <img src="${sample ? sample.images[0] : HERO_IMAGE}" alt="${c.name}" loading="lazy" />
+        <div class="collection-card__label">
+          <h3>${c.name}</h3>
+          <p>${c.blurb}</p>
+        </div>
+      </a>`;
+  }).join("");
+
+  const categories = [...new Set(PRODUCTS.map(p => p.category))];
+  document.getElementById("category-strip").innerHTML = categories.map(cat => {
+    const sample = PRODUCTS.find(p => p.category === cat);
+    return `
+      <a href="shop.html?category=${encodeURIComponent(cat)}" class="category-pill">
+        <div class="category-pill__media"><img src="${sample.images[0]}" alt="${cat}" loading="lazy" /></div>
+        <span>${cat}</span>
+      </a>`;
+  }).join("");
+</script>
+</body>
+</html>

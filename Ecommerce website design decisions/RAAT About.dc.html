@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Italiana&family=Inter:wght@400;500;600&display=swap">
+<style>body{margin:0;background:#0C0B0A;color:#F4EEE2;font-family:Inter,sans-serif;}a{color:#F4EEE2;text-decoration:none;}a:hover{color:#C9A227;}</style>
+</helmet>
+<div style="background:#0C0B0A;color:#F4EEE2;min-height:100vh">
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1440px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+      <a href="RAAT Home.dc.html" style="position:relative;width:110px;height:26px;overflow:hidden;display:block"><span style="{{ raatStyleLatin }}">RAAT</span><span style="{{ raatStyleDev }}">रात</span></a>
+      <nav style="display:flex;gap:36px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase">
+        <a href="RAAT Shop.dc.html">Shop</a><a href="RAAT Collection.dc.html">Collections</a><a href="RAAT Journal.dc.html">Journal</a><a href="RAAT About.dc.html" style="color:#C9A227">About</a><a href="RAAT Contact.dc.html">Contact</a>
+      </nav>
+      <div style="display:flex;gap:24px;align-items:center;font-size:13px">
+        <span style="cursor:pointer">Search</span>
+        <a href="RAAT Cart.dc.html" style="position:relative;cursor:pointer">Cart<span style="position:absolute;top:-10px;right:-16px;background:#C9A227;color:#0C0B0A;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600">2</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:900px;margin:0 auto;padding:180px 40px 100px;text-align:center">
+    <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.2em;color:#A79C8C;margin-bottom:20px">Our Story</div>
+    <h1 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2.5rem,5vw,4rem);line-height:1.05;margin:0 0 24px">
+      <sc-for list="{{ heroWords }}" as="w" hint-placeholder-count="7"><span class="rv" style="opacity:0;transform:translateY(16px);transition:opacity 0.5s cubic-bezier(0,0,0.3,1),transform 0.5s cubic-bezier(0,0,0.3,1);display:inline-block">{{ w.text }}&nbsp;</span></sc-for>
+    </h1>
+    <p style="color:#A79C8C;max-width:560px;margin:0 auto">RAAT began with a single question: what does Indian craft look like after sundown?</p>
+  </div>
+
+  <div style="max-width:1440px;margin:0 auto;padding:0 40px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div class="rv" style="opacity:0;clip-path:inset(0 0 100% 0);transition:opacity 0.9s cubic-bezier(0,0,0.3,1),clip-path 0.9s cubic-bezier(0,0,0.3,1);aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#221e1b 12px,#221e1b 24px);position:relative">
+      <span style="position:absolute;top:16px;left:16px;font-family:monospace;font-size:10px;color:#A79C8C;max-width:200px">FOUNDER PHOTO \u2014 atelier, single-source light</span>
+    </div>
+    <div>
+      <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.75rem;margin:0 0 20px">2019, Jaipur</h2>
+      <p style="color:#A79C8C;line-height:1.7;margin:0">RAAT was founded on the belief that Indian fashion could hold both its craft heritage and a modern, editorial confidence. We started with three handloom weavers and a single silhouette; today the studio works across four regions, translating heritage textile techniques into pieces meant for evenings, not just occasions.</p>
+    </div>
+  </div>
+
+  <div style="max-width:1440px;margin:0 auto;padding:40px 40px 120px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div>
+      <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.75rem;margin:0 0 20px">The Artisans</h2>
+      <p style="color:#A79C8C;line-height:1.7;margin:0">Every RAAT piece is made in partnership with weavers, block printers, and zari embroiderers across India. We pay above fair-trade rates and commit to multi-season orders, so craft knowledge has a reason to stay in the family.</p>
+    </div>
+    <div class="rv" style="opacity:0;clip-path:inset(0 0 100% 0);transition:opacity 0.9s cubic-bezier(0,0,0.3,1),clip-path 0.9s cubic-bezier(0,0,0.3,1);aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#221e1b 12px,#221e1b 24px);position:relative">
+      <span style="position:absolute;top:16px;left:16px;font-family:monospace;font-size:10px;color:#A79C8C;max-width:200px">ARTISAN PHOTO \u2014 handloom weaving, workshop light</span>
+    </div>
+  </div>
+
+  <div style="background:#151312;padding:96px 40px">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="rv" style="opacity:0;transform:translateY(20px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);margin-bottom:48px;text-align:center">
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(1.75rem,3vw,2.25rem);margin:0">What We Value</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+          <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);text-align:center">
+            <h3 style="font-family:'Bodoni Moda',serif;font-size:1.3rem;margin:0 0 12px">{{ v.title }}</h3>
+            <p style="color:#A79C8C;font-size:0.9rem;line-height:1.6;margin:0">{{ v.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:800px;margin:0 auto;padding:120px 40px">
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(1.75rem,3vw,2.25rem);margin:0 0 56px;text-align:center">Milestones</h2>
+    <div style="position:relative;padding-left:32px;border-left:1px solid #2C2825">
+      <sc-for list="{{ milestones }}" as="m" hint-placeholder-count="5">
+        <div class="rv" style="opacity:0;transform:translateX(-16px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);position:relative;padding-bottom:48px">
+          <div style="position:absolute;left:-37px;top:4px;width:9px;height:9px;border-radius:50%;background:#C9A227"></div>
+          <div style="font-family:'Italiana',serif;font-size:0.85rem;letter-spacing:0.1em;color:#C9A227;margin-bottom:8px">{{ m.year }}</div>
+          <div style="font-family:'Bodoni Moda',serif;font-size:1.1rem;margin-bottom:6px">{{ m.title }}</div>
+          <p style="color:#A79C8C;font-size:0.9rem;margin:0">{{ m.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <footer style="background:#151312;border-top:1px solid #2C2825;padding:64px 40px 32px">
+    <div style="max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center">
+      <div style="font-family:'Italiana',serif;font-size:1.1rem;letter-spacing:0.15em">RAAT</div>
+      <div style="font-size:0.75rem;color:#A79C8C">&copy; 2026 RAAT. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { headerScheme: 'transparent', headerHidden: false, glitchOn: false, script: 'latin' };
+  componentDidMount() {
+    this._lastY = window.scrollY;
+    this._onScroll = () => {
+      const y = window.scrollY;
+      const scrolledDown = y > this._lastY;
+      const past = y > 80;
+      this.setState({ headerHidden: past && scrolledDown, headerScheme: past ? 'solid' : 'transparent' });
+      this._lastY = y;
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.style.cssText += ';opacity:1 !important;transform:none !important;clip-path:inset(0 0 0% 0) !important;'; });
+    }, { threshold: 0.12 });
+    this._observer = observer;
+    setTimeout(() => { document.querySelectorAll('.rv').forEach(el => observer.observe(el)); }, 50);
+    this._glitchLoop = () => {
+      this.setState({ glitchOn: true });
+      setTimeout(() => { this.setState(s => ({ glitchOn: false, script: s.script === 'latin' ? 'devanagari' : 'latin' })); }, 260);
+      this._glitchTimer = setTimeout(this._glitchLoop, 6000 + Math.random() * 4000);
+    };
+    this._glitchTimer = setTimeout(this._glitchLoop, 4000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._glitchTimer);
+  }
+  renderVals() {
+    const headerSolid = this.state.headerScheme === 'solid';
+    const headerStyle = `position:fixed;top:0;left:0;right:0;z-index:50;transition:transform 400ms cubic-bezier(0.16,1,0.3,1),background-color 400ms,backdrop-filter 400ms;transform:translateY(${this.state.headerHidden ? '-100%' : '0'});background:${headerSolid ? 'rgba(21,19,18,0.9)' : 'transparent'};backdrop-filter:${headerSolid ? 'blur(10px)' : 'none'};border-bottom:${headerSolid ? '1px solid #2C2825' : 'none'}`;
+    const g = this.state.glitchOn;
+    const showLatin = this.state.script === 'latin';
+    const latinVisible = g ? !showLatin : showLatin;
+    const devVisible = g ? showLatin : !showLatin;
+    const raatStyleLatin = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.15em;color:#F4EEE2;transition:opacity 100ms;opacity:${latinVisible?1:0};transform:${g?'translate(-3px,1px)':'none'};filter:${g?'drop-shadow(2px 0 #6E1423) drop-shadow(-2px 0 #C9A227)':'none'}`;
+    const raatStyleDev = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.1em;color:#C9A227;transition:opacity 100ms;opacity:${devVisible?1:0};transform:${g?'translate(2px,-1px)':'none'}`;
+
+    const heroWords = ['Craft', 'that', 'lives', 'after', 'the', 'sun', 'sets.'].map(text => ({ text }));
+    const values = [
+      { title: 'Slow Craft', body: 'Every piece is made to order in small batches, never rushed for speed.' },
+      { title: 'Fair Partnership', body: 'Artisan partners are paid above fair-trade rates, season after season.' },
+      { title: 'Made to Last', body: 'Natural fibers and considered construction, built for years of wear.' },
+    ];
+    const milestones = [
+      { year: '2019', title: 'RAAT is founded', body: 'Three weavers, one silhouette, Jaipur.' },
+      { year: '2021', title: 'Amavas launches', body: 'Our first full collection, built around the new moon.' },
+      { year: '2023', title: 'Zari partnership', body: 'Long-term partnership with Varanasi zari artisans begins.' },
+      { year: '2025', title: 'Four collections', body: 'Amavas, Neel, Zari and Sanjh, all in rotation.' },
+      { year: '2026', title: 'RAAT online', body: 'The full collection arrives on raat.com.' },
+    ];
+    return { headerStyle, raatStyleLatin, raatStyleDev, heroWords, values, milestones };
+  }
+}
+</script>
+</body>
+</html>

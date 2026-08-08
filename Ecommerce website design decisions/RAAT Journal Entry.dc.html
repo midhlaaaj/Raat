@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Italiana&family=Inter:wght@400;500;600&display=swap">
+<style>body{margin:0;background:#0C0B0A;color:#F4EEE2;font-family:Inter,sans-serif;}a{color:#F4EEE2;text-decoration:none;}a:hover{color:#C9A227;}</style>
+</helmet>
+<div style="background:#0C0B0A;color:#F4EEE2;min-height:100vh">
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1440px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+      <a href="RAAT Home.dc.html" style="position:relative;width:110px;height:26px;overflow:hidden;display:block"><span style="{{ raatStyleLatin }}">RAAT</span><span style="{{ raatStyleDev }}">रात</span></a>
+      <nav style="display:flex;gap:36px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase">
+        <a href="RAAT Shop.dc.html">Shop</a><a href="RAAT Collection.dc.html">Collections</a><a href="RAAT Journal.dc.html" style="color:#C9A227">Journal</a><a href="RAAT About.dc.html">About</a><a href="RAAT Contact.dc.html">Contact</a>
+      </nav>
+      <div style="display:flex;gap:24px;align-items:center;font-size:13px">
+        <span style="cursor:pointer">Search</span>
+        <a href="RAAT Cart.dc.html" style="position:relative;cursor:pointer">Cart<span style="position:absolute;top:-10px;right:-16px;background:#C9A227;color:#0C0B0A;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600">2</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section style="position:relative;height:70vh;min-height:460px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center">
+    <div class="rv" style="opacity:0;clip-path:inset(0 0 100% 0);transition:opacity 0.9s cubic-bezier(0,0,0.3,1),clip-path 0.9s cubic-bezier(0,0,0.3,1);position:absolute;inset:0;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 14px,#211d1a 14px,#211d1a 28px)">
+      <span style="position:absolute;bottom:24px;left:24px;font-family:monospace;font-size:10px;color:#A79C8C">JOURNAL PHOTO \u2014 feature image, full-bleed</span>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,11,10,0.9) 0%,rgba(12,11,10,0.1) 60%)"></div>
+    <div style="position:relative;text-align:center;padding:0 24px 48px;max-width:760px">
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#C9A227;margin-bottom:16px">Styling</div>
+      <h1 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2rem,4vw,3.25rem);line-height:1.1;margin:0 0 16px;color:#FFFFFF">
+        <sc-for list="{{ titleWords }}" as="w" hint-placeholder-count="6"><span class="rv" style="opacity:0;transform:translateY(16px);transition:opacity 0.5s cubic-bezier(0,0,0.3,1),transform 0.5s cubic-bezier(0,0,0.3,1);display:inline-block">{{ w.text }}&nbsp;</span></sc-for>
+      </h1>
+      <div style="font-size:0.85rem;color:#A79C8C">By the RAAT Studio &middot; Jul 28, 2026</div>
+    </div>
+  </section>
+
+  <article style="max-width:720px;margin:0 auto;padding:80px 40px 60px;font-size:1.05rem;line-height:1.8;color:#F4EEE2">
+    <p>Zari thread was made for candlelight, not daylight. There is a particular way the metallic weave catches a single low source of light and throws it back in fragments \u2014 something that gets lost entirely under the flat white of a studio softbox.</p>
+    <div class="rv" style="opacity:0;transform:translateY(20px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);aspect-ratio:16/9;margin:40px 0;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px);display:flex;align-items:center;justify-content:center">
+      <span style="font-family:monospace;font-size:10px;color:#A79C8C">JOURNAL PHOTO \u2014 inline, zari detail macro</span>
+    </div>
+    <p>Our approach starts with restraint: one statement piece, paired with fabrics that absorb rather than compete for light \u2014 a matte silk, a raw cotton, something with texture but no shine of its own. Then we build the rest of the look around whatever the zari catches.</p>
+    <p>The result is an outfit that changes character across an evening \u2014 subdued at golden hour, fully alive by the time the candles are lit.</p>
+  </article>
+
+  <div style="max-width:1440px;margin:0 auto;padding:60px 40px 120px">
+    <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(1.5rem,3vw,2rem);margin:0 0 32px">Related Reading</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
+      <sc-for list="{{ related }}" as="e" hint-placeholder-count="3">
+        <a href="RAAT Journal Entry.dc.html" style="display:block">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center"><span style="font-family:monospace;font-size:10px;color:#A79C8C">{{ e.imageLabel }}</span></div></div>
+          <div style="padding-top:14px"><div style="font-size:0.75rem;color:#C9A227;text-transform:uppercase;margin-bottom:6px">{{ e.category }}</div><h3 style="font-family:'Bodoni Moda',serif;font-size:1rem;margin:0">{{ e.title }}</h3></div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <footer style="background:#151312;border-top:1px solid #2C2825;padding:64px 40px 32px">
+    <div style="max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center">
+      <div style="font-family:'Italiana',serif;font-size:1.1rem;letter-spacing:0.15em">RAAT</div>
+      <div style="font-size:0.75rem;color:#A79C8C">&copy; 2026 RAAT. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { headerScheme: 'transparent', headerHidden: false, glitchOn: false, script: 'latin' };
+  componentDidMount() {
+    this._lastY = window.scrollY;
+    this._onScroll = () => {
+      const y = window.scrollY;
+      const scrolledDown = y > this._lastY;
+      const past = y > window.innerHeight * 0.6;
+      this.setState({ headerHidden: past && scrolledDown, headerScheme: past ? 'solid' : 'transparent' });
+      this._lastY = y;
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.style.cssText += ';opacity:1 !important;transform:none !important;clip-path:inset(0 0 0% 0) !important;'; });
+    }, { threshold: 0.12 });
+    this._observer = observer;
+    setTimeout(() => { document.querySelectorAll('.rv').forEach(el => observer.observe(el)); }, 50);
+    this._glitchLoop = () => {
+      this.setState({ glitchOn: true });
+      setTimeout(() => { this.setState(s => ({ glitchOn: false, script: s.script === 'latin' ? 'devanagari' : 'latin' })); }, 260);
+      this._glitchTimer = setTimeout(this._glitchLoop, 6000 + Math.random() * 4000);
+    };
+    this._glitchTimer = setTimeout(this._glitchLoop, 4000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._glitchTimer);
+  }
+  renderVals() {
+    const headerSolid = this.state.headerScheme === 'solid';
+    const headerStyle = `position:fixed;top:0;left:0;right:0;z-index:50;transition:transform 400ms cubic-bezier(0.16,1,0.3,1),background-color 400ms,backdrop-filter 400ms;transform:translateY(${this.state.headerHidden ? '-100%' : '0'});background:${headerSolid ? 'rgba(21,19,18,0.9)' : 'transparent'};backdrop-filter:${headerSolid ? 'blur(10px)' : 'none'};border-bottom:${headerSolid ? '1px solid #2C2825' : 'none'}`;
+    const g = this.state.glitchOn;
+    const showLatin = this.state.script === 'latin';
+    const latinVisible = g ? !showLatin : showLatin;
+    const devVisible = g ? showLatin : !showLatin;
+    const raatStyleLatin = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.15em;color:#F4EEE2;transition:opacity 100ms;opacity:${latinVisible?1:0};transform:${g?'translate(-3px,1px)':'none'};filter:${g?'drop-shadow(2px 0 #6E1423) drop-shadow(-2px 0 #C9A227)':'none'}`;
+    const raatStyleDev = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.1em;color:#C9A227;transition:opacity 100ms;opacity:${devVisible?1:0};transform:${g?'translate(2px,-1px)':'none'}`;
+    const titleWords = ['How', 'to', 'Wear', 'Zari', 'After', 'Dark'].map(text => ({ text }));
+    const related = [
+      ['Artisans', 'Inside a Varanasi Weaving House'],
+      ['Studio', 'Building the Amavas Collection'],
+      ['Craft', 'The Language of Zari Thread'],
+    ].map(([category, title]) => ({ category, title, imageLabel: `JOURNAL PHOTO \u2014 ${title}` }));
+    return { headerStyle, raatStyleLatin, raatStyleDev, titleWords, related };
+  }
+}
+</script>
+</body>
+</html>

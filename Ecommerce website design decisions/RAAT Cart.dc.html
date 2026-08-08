@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Italiana&family=Inter:wght@400;500;600&display=swap">
+<style>body{margin:0;background:#0C0B0A;color:#F4EEE2;font-family:Inter,sans-serif;}a{color:#F4EEE2;text-decoration:none;}a:hover{color:#C9A227;}</style>
+</helmet>
+<div style="background:#0C0B0A;color:#F4EEE2;min-height:100vh">
+  <header style="position:sticky;top:0;z-index:50;background:rgba(21,19,18,0.9);backdrop-filter:blur(10px);border-bottom:1px solid #2C2825">
+    <div style="max-width:1440px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+      <a href="RAAT Home.dc.html" style="font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.15em">RAAT</a>
+      <nav style="display:flex;gap:36px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase">
+        <a href="RAAT Shop.dc.html">Shop</a><a href="RAAT Collection.dc.html">Collections</a><a href="RAAT Journal.dc.html">Journal</a><a href="RAAT About.dc.html">About</a><a href="RAAT Contact.dc.html">Contact</a>
+      </nav>
+      <a href="RAAT Cart.dc.html" style="color:#C9A227;font-size:13px">Cart ({{ itemCount }})</a>
+    </div>
+  </header>
+
+  <div style="max-width:1100px;margin:0 auto;padding:64px 40px 120px">
+    <h1 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,4vw,2.5rem);margin:0 0 48px">Your Cart</h1>
+    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:64px;align-items:start">
+      <div>
+        <sc-for list="{{ items }}" as="it" hint-placeholder-count="2">
+          <div style="{{ it.rowStyle }}">
+            <div style="display:flex;gap:20px;padding:24px 0;border-bottom:1px solid #2C2825">
+              <div style="width:110px;aspect-ratio:4/5;flex-shrink:0;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 10px,#211d1a 10px,#211d1a 20px);display:flex;align-items:center;justify-content:center;padding:6px;text-align:center">
+                <span style="font-family:monospace;font-size:8px;color:#A79C8C">{{ it.imageLabel }}</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
+                <div>
+                  <div style="font-family:'Bodoni Moda',serif;font-size:1.1rem;margin-bottom:4px">{{ it.name }}</div>
+                  <div style="font-size:0.8rem;color:#A79C8C">{{ it.variant }}</div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <div style="display:flex;align-items:center;border:1px solid #2C2825">
+                    <button onClick="{{ it.dec }}" style="background:none;border:none;color:#F4EEE2;width:32px;height:32px;cursor:pointer">-</button>
+                    <span style="width:28px;text-align:center;font-size:0.85rem">{{ it.qty }}</span>
+                    <button onClick="{{ it.inc }}" style="background:none;border:none;color:#F4EEE2;width:32px;height:32px;cursor:pointer">+</button>
+                  </div>
+                  <span style="font-size:0.95rem">{{ it.price }}</span>
+                </div>
+              </div>
+              <button onClick="{{ it.remove }}" style="background:none;border:none;color:#A79C8C;cursor:pointer;font-size:0.8rem;align-self:flex-start">Remove</button>
+            </div>
+          </div>
+        </sc-for>
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <p style="color:#A79C8C;padding:40px 0">Your cart is empty. <a href="RAAT Shop.dc.html" style="color:#C9A227">Continue shopping</a></p>
+        </sc-if>
+      </div>
+
+      <div style="background:#151312;padding:32px">
+        <h3 style="font-family:'Bodoni Moda',serif;font-size:1.2rem;margin:0 0 24px">Order Summary</h3>
+        <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:#A79C8C;margin-bottom:12px"><span>Subtotal</span><span>{{ subtotal }}</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:#A79C8C;margin-bottom:20px"><span>Shipping</span><span>Free</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:1.1rem;border-top:1px solid #2C2825;padding-top:20px;margin-bottom:28px"><span>Total</span><span>{{ subtotal }}</span></div>
+        <a href="RAAT Checkout.dc.html" style="display:block;text-align:center;background:#C9A227;color:#0C0B0A;padding:16px;font-size:0.85rem;letter-spacing:0.05em;text-transform:uppercase;font-weight:600">Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    items: [
+      { id: 1, name: 'Zari Thread Blouse', variant: 'Maroon / M', price: 11200, qty: 1, imageLabel: 'PRODUCT \u2014 Zari Blouse', removing: false },
+      { id: 2, name: 'Neel Midnight Saree', variant: 'Indigo / Free Size', price: 8400, qty: 1, imageLabel: 'PRODUCT \u2014 Neel Saree', removing: false },
+    ],
+  };
+  changeQty(id, delta) {
+    this.setState(s => ({ items: s.items.map(it => it.id === id ? { ...it, qty: Math.max(1, it.qty + delta) } : it) }));
+  }
+  removeItem(id) {
+    this.setState(s => ({ items: s.items.map(it => it.id === id ? { ...it, removing: true } : it) }));
+    setTimeout(() => this.setState(s => ({ items: s.items.filter(it => it.id !== id) })), 350);
+  }
+  renderVals() {
+    const fmt = (n) => `\u20b9${n.toLocaleString('en-IN')}`;
+    const items = this.state.items.map(it => ({
+      ...it,
+      price: fmt(it.price * it.qty),
+      rowStyle: `overflow:hidden;transition:max-height 350ms ease,opacity 350ms ease;max-height:${it.removing ? '0px' : '200px'};opacity:${it.removing ? 0 : 1}`,
+      inc: () => this.changeQty(it.id, 1),
+      dec: () => this.changeQty(it.id, -1),
+      remove: () => this.removeItem(it.id),
+    }));
+    const subtotal = fmt(this.state.items.reduce((sum, it) => sum + it.price * it.qty, 0));
+    return { items, isEmpty: this.state.items.length === 0, subtotal, itemCount: this.state.items.reduce((s,i)=>s+i.qty,0) };
+  }
+}
+</script>
+</body>
+</html>

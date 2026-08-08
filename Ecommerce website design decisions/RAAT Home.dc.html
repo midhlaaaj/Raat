@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Italiana&family=Inter:wght@400;500;600&display=swap">
+<style>
+  body{margin:0;background:#0C0B0A;color:#F4EEE2;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:#F4EEE2;text-decoration:none;}
+  a:hover{color:#C9A227;}
+  @keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.08)}}
+</style>
+</helmet>
+<div style="background:#0C0B0A;color:#F4EEE2">
+
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1440px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+      <div style="position:relative;width:110px;height:26px;overflow:hidden">
+        <span style="{{ raatStyleLatin }}">RAAT</span>
+        <span style="{{ raatStyleDev }}">रात</span>
+      </div>
+      <nav style="display:flex;gap:36px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase">
+        <a href="#">Shop</a><a href="#">Collections</a><a href="#">Journal</a><a href="#">About</a><a href="#">Contact</a>
+      </nav>
+      <div style="display:flex;gap:24px;align-items:center;font-size:13px">
+        <span style="cursor:pointer">Search</span>
+        <span style="position:relative;cursor:pointer">Cart
+          <span style="position:absolute;top:-10px;right:-16px;background:#C9A227;color:#0C0B0A;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600">2</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <section style="position:sticky;top:0;z-index:1;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;justify-content:center">
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 14px,#211d1a 14px,#211d1a 28px);animation:kenburns 22s ease-in-out infinite alternate">
+      <span style="position:absolute;bottom:24px;left:24px;font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C;max-width:220px">HERO PHOTO — moody single-subject portrait, jewel-toned garment, low-key light</span>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,10,0.15) 0%,rgba(12,11,10,0.55) 75%,#0C0B0A 100%)"></div>
+    <div style="position:relative;text-align:center;padding:0 24px;max-width:900px">
+      <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.2em;color:#F4EEE2;margin-bottom:20px">New Season</div>
+      <h1 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(3.5rem,7vw,7.5rem);line-height:0.95;margin:0 0 28px;color:#FFFFFF">Where Night<br/>Becomes Wearable</h1>
+      <a href="#" style="display:inline-block;border:1px solid #F4EEE2;padding:16px 40px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#F4EEE2" style-hover="background:#F4EEE2;color:#0C0B0A">Shop the Collection</a>
+    </div>
+  </section>
+
+  <div style="position:relative;z-index:2;background:#0C0B0A">
+  <section style="position:relative;padding:0 0 96px;box-shadow:0 -40px 60px 20px rgba(0,0,0,0.4)">
+    <div style="position:relative;height:70vh;min-height:420px;background:repeating-linear-gradient(135deg,#151312,#151312 14px,#1a1715 14px,#1a1715 28px)">
+      <span style="position:absolute;top:24px;left:24px;font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C;max-width:220px">EDITORIAL PHOTO — jewel-toned fabric detail against dark ground</span>
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,#0C0B0A 0%,rgba(12,11,10,0) 30%)"></div>
+    </div>
+    <p style="font-family:'Bodoni Moda',serif;font-size:1.75rem;font-style:italic;color:#F4EEE2;text-align:center;max-width:640px;margin:48px auto 0;line-height:1.3">Cloth caught mid-flicker, lit like the hour it's made for.</p>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:0 40px 120px">
+    <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);margin-bottom:48px">
+      <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:#A79C8C;margin-bottom:12px">Iconic</div>
+      <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,4vw,2.75rem);margin:0">Signature Pieces</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+      <sc-for list="{{ iconicProducts }}" as="p" hint-placeholder-count="4">
+        <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1)">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px)">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center">
+              <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabel }}</span>
+            </div>
+            <div style="position:absolute;inset:0;opacity:0;transition:opacity 300ms;background:repeating-linear-gradient(45deg,#1C1917,#1C1917 12px,#241f1c 12px,#241f1c 24px);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center" style-hover="opacity:1">
+              <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabelAlt }}</span>
+            </div>
+          </div>
+          <div style="padding-top:16px;text-align:left">
+            <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:6px">{{ p.collection }}</div>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.15rem;margin:0 0 8px;display:inline-block;border-bottom:1px solid transparent;transition:border-color 300ms" style-hover="border-color:#F4EEE2">{{ p.name }}</h3>
+            <div style="font-size:0.95rem;color:#F4EEE2">{{ p.price }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:0 40px 120px">
+    <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);margin-bottom:48px">
+      <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:#A79C8C;margin-bottom:12px">Just In</div>
+      <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,4vw,2.75rem);margin:0">New Arrivals</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+      <sc-for list="{{ newArrivals }}" as="p" hint-placeholder-count="4">
+        <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1)">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px)">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center">
+              <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabel }}</span>
+            </div>
+            <div style="position:absolute;inset:0;opacity:0;transition:opacity 300ms;background:repeating-linear-gradient(45deg,#1C1917,#1C1917 12px,#241f1c 12px,#241f1c 24px);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center" style-hover="opacity:1">
+              <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabelAlt }}</span>
+            </div>
+          </div>
+          <div style="padding-top:16px;text-align:left">
+            <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:6px">{{ p.collection }}</div>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.15rem;margin:0 0 8px;display:inline-block;border-bottom:1px solid transparent;transition:border-color 300ms" style-hover="border-color:#F4EEE2">{{ p.name }}</h3>
+            <div style="font-size:0.95rem;color:#F4EEE2">{{ p.price }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#151312;padding:96px 40px">
+    <div style="max-width:1440px;margin:0 auto">
+      <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);margin-bottom:48px">
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,4vw,2.75rem);margin:0">Shop by Collection</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:repeat(3,1fr);gap:24px;height:720px">
+        <sc-for list="{{ collections }}" as="c" hint-placeholder-count="4">
+          <a href="#" class="rv" style="{{ c.gridStyle }}">
+            <div style="position:absolute;top:16px;left:16px;right:16px;text-align:center">
+              <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ c.imageLabel }}</span>
+            </div>
+            <div style="position:relative;z-index:1">
+              <h3 style="font-family:'Bodoni Moda',serif;font-size:1.5rem;margin:0 0 6px;color:#FFFFFF">{{ c.name }}</h3>
+              <p style="font-size:0.8rem;color:#A79C8C;margin:0;max-width:200px">{{ c.blurb }}</p>
+            </div>
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,11,10,0.85) 0%,rgba(12,11,10,0) 55%)"></div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section ref="{{ setCatSectionRef }}" style="position:relative;height:220vh">
+    <div style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden">
+      <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);max-width:1440px;margin:0 auto 40px;padding:0 40px;width:100%;box-sizing:border-box">
+        <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,4vw,2.75rem);margin:0">Shop by Category</h2>
+      </div>
+      <div ref="{{ setCatTrackRef }}" style="{{ catTrackStyle }}">
+        <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+          <a href="#" style="flex:0 0 320px;position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#221e1b 12px,#221e1b 24px);display:flex;align-items:flex-end;padding:18px">
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,11,10,0.75) 0%,rgba(12,11,10,0) 60%)"></div>
+            <span style="position:relative;z-index:1;font-family:'Bodoni Moda',serif;font-size:1.15rem;color:#FFFFFF">{{ cat.name }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:0 40px 120px">
+    <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);margin-bottom:48px">
+      <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:#A79C8C;margin-bottom:12px">Trending</div>
+      <h2 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2rem,4vw,2.75rem);margin:0">Trending Now</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+      <sc-for list="{{ trending }}" as="p" hint-placeholder-count="4">
+        <div class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1)">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px)">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center">
+              <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabel }}</span>
+            </div>
+            <div style="position:absolute;inset:0;opacity:0;transition:opacity 300ms;background:repeating-linear-gradient(45deg,#1C1917,#1C1917 12px,#241f1c 12px,#241f1c 24px);display:flex;align-items:center;justify-content:center;padding:16px;text-align:center" style-hover="opacity:1">
+              <span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabelAlt }}</span>
+            </div>
+          </div>
+          <div style="padding-top:16px;text-align:left">
+            <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:6px">{{ p.collection }}</div>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.15rem;margin:0 0 8px;display:inline-block;border-bottom:1px solid transparent;transition:border-color 300ms" style-hover="border-color:#F4EEE2">{{ p.name }}</h3>
+            <div style="font-size:0.95rem;color:#F4EEE2">{{ p.price }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:#151312;padding:120px 40px;position:relative;min-height:260px">
+    <div style="max-width:760px;margin:0 auto;position:relative;height:150px">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="1">
+        <p style="{{ t.style }}">
+          <span style="font-family:'Bodoni Moda',serif;font-size:1.5rem;font-style:italic;line-height:1.4;color:#F4EEE2;display:block;text-align:center;margin:0 0 16px">&ldquo;{{ t.quote }}&rdquo;</span>
+          <span style="display:block;text-align:center;font-size:0.8rem;letter-spacing:0.05em;text-transform:uppercase;color:#A79C8C">{{ t.author }}</span>
+        </p>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1440px;margin:0 auto;padding:120px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div class="rv" style="opacity:0;clip-path:inset(0 0 100% 0);transition:opacity 0.9s cubic-bezier(0,0,0.3,1),clip-path 0.9s cubic-bezier(0,0,0.3,1);position:relative;aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#221e1b 12px,#221e1b 24px)">
+      <span style="position:absolute;top:16px;left:16px;font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C;max-width:200px">MOODY PORTRAIT — founder / atelier, single-source light</span>
+    </div>
+    <div>
+      <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:#A79C8C;margin-bottom:16px">Our Story</div>
+      <h2 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin:0 0 24px">
+        <sc-for list="{{ storyWords }}" as="w" hint-placeholder-count="5"><span class="rv" style="opacity:0;transform:translateY(16px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);display:inline-block">{{ w.text }}&nbsp;</span></sc-for>
+      </h2>
+      <p style="color:#A79C8C;line-height:1.6;max-width:440px;margin:0 0 32px">RAAT began with a single question: what does craft look like after sundown? We work with handloom weavers and zari artisans across India, then cut every silhouette for a life lived after dark.</p>
+      <div style="display:flex;gap:48px;margin-bottom:32px">
+        <div><div style="font-family:'Bodoni Moda',serif;font-size:2rem;color:#F4EEE2">40+</div><div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-top:4px">Artisan Partners</div></div>
+        <div><div style="font-family:'Bodoni Moda',serif;font-size:2rem;color:#F4EEE2">4</div><div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-top:4px">Collections</div></div>
+        <div><div style="font-family:'Bodoni Moda',serif;font-size:2rem;color:#F4EEE2">2019</div><div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-top:4px">Founded</div></div>
+      </div>
+      <a href="#" style="display:inline-block;border:1px solid #F4EEE2;padding:14px 32px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#F4EEE2" style-hover="background:#F4EEE2;color:#0C0B0A">Read Our Story</a>
+    </div>
+  </section>
+
+  <footer style="background:#0C0B0A;border-top:1px solid #2C2825;padding:80px 40px 40px">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr 1fr 0.8fr 1.3fr;gap:48px;padding-bottom:64px">
+      <div>
+        <div style="font-family:'Italiana',serif;font-size:1.4rem;letter-spacing:0.15em;color:#F4EEE2;margin-bottom:16px">RAAT</div>
+        <p style="color:#A79C8C;font-size:0.85rem;line-height:1.6;max-width:280px">Contemporary Indian fashion, cut for the hours after sundown. Handloom, hand-block, and zari craft — reimagined.</p>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#F4EEE2;margin-bottom:16px">Shop</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:0.85rem;color:#A79C8C"><a href="#" style="color:inherit">All Products</a><a href="#" style="color:inherit">Amavas</a><a href="#" style="color:inherit">Neel</a><a href="#" style="color:inherit">Zari</a><a href="#" style="color:inherit">Sanjh</a></div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#F4EEE2;margin-bottom:16px">Company</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:0.85rem;color:#A79C8C"><a href="#" style="color:inherit">Our Story</a><a href="#" style="color:inherit">Journal</a><a href="#" style="color:inherit">Contact</a></div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#F4EEE2;margin-bottom:16px">Connect</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:0.85rem;color:#A79C8C"><a href="#" style="color:inherit">Instagram</a><a href="#" style="color:inherit">Pinterest</a></div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#F4EEE2;margin-bottom:16px">Join the Night List</div>
+        <p style="color:#A79C8C;font-size:0.8rem;line-height:1.5;margin:0 0 16px">First access to drops and studio notes.</p>
+        <form style="display:flex" onSubmit="{{ handleSubscribe }}">
+          <input type="email" required="{{ true }}" placeholder="Email" style="flex:1;min-width:0;background:transparent;border:1px solid #2C2825;border-right:none;padding:11px 12px;color:#F4EEE2;font-size:0.85rem;font-family:Inter,sans-serif" />
+          <button type="submit" style="background:#C9A227;color:#0C0B0A;border:none;padding:11px 18px;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;font-weight:600;cursor:pointer">Join</button>
+        </form>
+      </div>
+    </div>
+    <div style="max-width:1440px;margin:0 auto;border-top:1px solid #2C2825;padding-top:24px;font-size:0.75rem;color:#A79C8C">&copy; 2026 RAAT. All rights reserved.</div>
+  </footer>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { headerScheme: 'transparent', headerHidden: false, glitchOn: false, script: 'latin', testiIndex: 0, catShift: 0 };
+
+  componentDidMount() {
+    this._lastY = window.scrollY;
+    this._onScroll = () => {
+      const y = window.scrollY;
+      const vh = window.innerHeight;
+      const scrolledDown = y > this._lastY;
+      const pastHero = y > vh;
+      this.setState({ headerHidden: pastHero && scrolledDown, headerScheme: pastHero ? 'solid' : 'transparent' });
+      this._lastY = y;
+
+      if (this._catSection && this._catTrack) {
+        const rect = this._catSection.getBoundingClientRect();
+        const total = rect.height - vh;
+        const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+        const maxShift = Math.max(0, this._catTrack.scrollWidth - window.innerWidth + 40);
+        this.setState({ catShift: progress * maxShift });
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    const els = this.getRoot ? null : null;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.style.cssText += ';opacity:1 !important;transform:none !important;clip-path:inset(0 0 0% 0) !important;'; });
+    }, { threshold: 0.15 });
+    this._observer = observer;
+    setTimeout(() => {
+      document.querySelectorAll('.rv').forEach(el => observer.observe(el));
+    }, 50);
+
+    this._glitchLoop = () => {
+      this.setState({ glitchOn: true });
+      setTimeout(() => {
+        this.setState(s => ({ glitchOn: false, script: s.script === 'latin' ? 'devanagari' : 'latin' }));
+      }, 260);
+      this._glitchTimer = setTimeout(this._glitchLoop, 6000 + Math.random() * 4000);
+    };
+    this._glitchTimer = setTimeout(this._glitchLoop, 4000);
+
+    this._testiTimer = setInterval(() => {
+      if (this._testiPaused) return;
+      this.setState(s => ({ testiIndex: (s.testiIndex + 1) % 3 }));
+    }, 5500);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._glitchTimer);
+    clearInterval(this._testiTimer);
+  }
+
+  renderVals() {
+    const headerSolid = this.state.headerScheme === 'solid';
+    const headerStyle = `position:fixed;top:0;left:0;right:0;z-index:50;transition:transform 400ms cubic-bezier(0.16,1,0.3,1),background-color 400ms,backdrop-filter 400ms;transform:translateY(${this.state.headerHidden ? '-100%' : '0'});background:${headerSolid ? 'rgba(21,19,18,0.85)' : 'transparent'};backdrop-filter:${headerSolid ? 'blur(10px)' : 'none'};border-bottom:${headerSolid ? '1px solid #2C2825' : 'none'}`;
+
+    const g = this.state.glitchOn;
+    const showLatin = this.state.script === 'latin';
+    const latinVisible = g ? !showLatin : showLatin;
+    const devVisible = g ? showLatin : !showLatin;
+    const raatStyleLatin = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.15em;color:#F4EEE2;transition:opacity 100ms;opacity:${latinVisible ? 1 : 0};transform:${g ? 'translate(-3px,1px)' : 'none'};filter:${g ? 'drop-shadow(2px 0 #6E1423) drop-shadow(-2px 0 #C9A227)' : 'none'}`;
+    const raatStyleDev = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.1em;color:#C9A227;transition:opacity 100ms;opacity:${devVisible ? 1 : 0};transform:${g ? 'translate(2px,-1px)' : 'none'}`;
+
+    const priceList = ['\u20b96,800', '\u20b98,400', '\u20b911,200', '\u20b99,600'];
+    const names = [
+      { name: 'Amavas Wrap Kurta', collection: 'Amavas' },
+      { name: 'Neel Midnight Saree', collection: 'Neel' },
+      { name: 'Zari Thread Blouse', collection: 'Zari' },
+      { name: 'Sanjh Dusk Jacket', collection: 'Sanjh' },
+    ];
+    const mkGrid = (labelPrefix) => names.map((n, i) => ({
+      ...n,
+      price: priceList[i],
+      imageLabel: `PRODUCT PHOTO \u2014 ${n.name}, front`,
+      imageLabelAlt: `PRODUCT PHOTO \u2014 ${n.name}, detail angle`,
+    }));
+
+    const collectionsBase = [
+      { name: 'Amavas', blurb: 'New moon. The darkest hour, worn.', imageLabel: 'COLLECTION PHOTO \u2014 Amavas' },
+      { name: 'Neel', blurb: 'Midnight indigo, deep and still.', imageLabel: 'COLLECTION PHOTO \u2014 Neel' },
+      { name: 'Zari', blurb: 'Gold thread catching low light.', imageLabel: 'COLLECTION PHOTO \u2014 Zari' },
+      { name: 'Sanjh', blurb: 'Dusk, just before the dark.', imageLabel: 'COLLECTION PHOTO \u2014 Sanjh' },
+    ];
+    const bentoBase = 'opacity:0;clip-path:inset(0 0 100% 0);transition:opacity 0.9s cubic-bezier(0,0,0.3,1),clip-path 0.9s cubic-bezier(0,0,0.3,1);position:relative;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#221e1b 12px,#221e1b 24px);display:flex;align-items:flex-end;padding:24px;overflow:hidden';
+    const bentoGrid = ['grid-column:1;grid-row:1/4', 'grid-column:2;grid-row:1', 'grid-column:2;grid-row:2', 'grid-column:2;grid-row:3'];
+    const collections = collectionsBase.map((c, i) => ({ ...c, gridStyle: `${bentoBase};${bentoGrid[i]}` }));
+
+    const categories = ['Sarees', 'Kurtas', 'Lehengas', 'Jackets', 'Blouses', 'Accessories'].map(name => ({ name }));
+
+    const testis = [
+      { quote: 'RAAT understands that Indian fashion can be moody and modern at once.', author: 'Vogue India' },
+      { quote: 'The zari work under low light is unlike anything else on the market.', author: 'Elle' },
+      { quote: 'Finally, ethnic wear that photographs like editorial, not ecommerce.', author: 'Harper\u2019s Bazaar' },
+    ];
+    const testimonials = testis.map((t, i) => ({
+      ...t,
+      style: `position:absolute;inset:0;transition:opacity 700ms ease-out;opacity:${i === this.state.testiIndex ? 1 : 0}`,
+    }));
+
+    const storyWords = ['Born', 'from', 'the', 'quiet', 'hour.'].map(text => ({ text }));
+
+    const catTrackStyle = `display:flex;gap:20px;padding:0 40px;transform:translateX(-${this.state.catShift}px);transition:transform 80ms linear`;
+
+    return {
+      headerStyle, raatStyleLatin, raatStyleDev, catTrackStyle,
+      setCatSectionRef: (el) => { this._catSection = el; },
+      setCatTrackRef: (el) => { this._catTrack = el; },
+      iconicProducts: mkGrid(), newArrivals: mkGrid(), trending: mkGrid(),
+      collections, categories, testimonials, storyWords,
+      handleSubscribe: (e) => e.preventDefault(),
+      pauseTest: () => { this._testiPaused = true; },
+      resumeTest: () => { this._testiPaused = false; },
+    };
+  }
+}
+</script>
+</body>
+</html>

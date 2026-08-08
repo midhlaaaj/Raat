@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — ROOH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="announce">Handloom textiles, made to order · Free shipping across India</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">ROOH</a>
+    <nav class="main-nav">
+      <a href="shop.html">New Arrivals</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="about.html">Our Story</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn" data-open-cart aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobile-nav" class="mobile-nav">
+  <button class="mobile-nav__close" aria-label="Close menu" onclick="document.getElementById('mobile-nav').classList.remove('is-open');document.body.classList.remove('no-scroll')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <a href="shop.html">New Arrivals</a>
+  <a href="shop.html">Shop</a>
+  <a href="index.html#collections">Collections</a>
+  <a href="about.html">Our Story</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container page-hero" data-reveal>
+  <p class="eyebrow">Get in Touch</p>
+  <h1>We'd love to hear from you.</h1>
+  <p>Questions about an order, a stockist near you, or just want to talk textiles — reach out and we'll get back within two business days.</p>
+</div>
+
+<div class="container contact-grid">
+  <form data-mock-form data-reveal>
+    <div class="field"><label for="c-name">Name</label><input type="text" id="c-name" required /></div>
+    <div class="field"><label for="c-email">Email</label><input type="email" id="c-email" required /></div>
+    <div class="field"><label for="c-subject">Subject</label><input type="text" id="c-subject" required /></div>
+    <div class="field"><label for="c-message">Message</label><textarea id="c-message" rows="6" required></textarea></div>
+    <button type="submit" class="btn">Send Message</button>
+    <p class="form-success" data-form-success hidden>Thanks for reaching out — we'll be in touch soon.</p>
+  </form>
+
+  <ul class="contact-info" data-reveal>
+    <li>
+      <h4>Email</h4>
+      <p>info@rooh-studio.com</p>
+    </li>
+    <li>
+      <h4>Phone</h4>
+      <p>+91 63553 53893</p>
+    </li>
+    <li>
+      <h4>Studio Hours</h4>
+      <p>Monday – Saturday, 11am – 6pm IST</p>
+    </li>
+    <li>
+      <h4>Studio Address</h4>
+      <p>ROOH Studio, Navrangpura, Ahmedabad, Gujarat 380009</p>
+    </li>
+    <li>
+      <h4>Follow</h4>
+      <div class="footer-social" style="margin-top:0.5rem;">
+        <a href="#" aria-label="Instagram" style="color:var(--color-text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Pinterest" style="color:var(--color-text);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-3 1.5-5.5 1.5-7a2.5 2.5 0 015 0c0 2-1 3.5-2 4"/></svg></a>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-statement">
+    <h2>Clothing built around the people who make it, and the ones who wear it.</h2>
+  </div>
+  <div class="container footer-columns">
+    <div class="footer-col">
+      <h4>ROOH</h4>
+      <p>Contemporary Indian fashion, woven and printed by hand in small batches out of Ahmedabad.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-3 1.5-5.5 1.5-7a2.5 2.5 0 015 0c0 2-1 3.5-2 4"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9h3V5h-3a4 4 0 00-4 4v2H7v4h3v6h4v-6h3l1-4h-4v-2a1 1 0 011-1z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="shop.html">New Arrivals</a></li>
+        <li><a href="index.html#collections">Collections</a></li>
+        <li><a href="shop.html">All Products</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Stockists</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <p>info@rooh-studio.com</p>
+      <p>+91 63553 53893</p>
+      <p>Mon – Sat, 11am – 6pm</p>
+    </div>
+  </div>
+  <div class="container"><div class="footer-wordmark">ROOH</div></div>
+  <div class="container footer-bottom">
+    <span>© 2026 ROOH Studio. All rights reserved.</span>
+    <span>Design portfolio piece — not a live store.</span>
+  </div>
+</footer>
+
+<div id="drawer-overlay" class="drawer-overlay"></div>
+<aside id="cart-drawer" class="drawer" aria-label="Shopping cart">
+  <div class="drawer__head">
+    <h3>Your Cart</h3>
+    <button data-close-cart aria-label="Close cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="drawer__body" id="cart-drawer-body"></div>
+  <div class="drawer__footer" id="cart-drawer-footer">
+    <div class="drawer__subtotal-row"><span>Subtotal</span><strong data-cart-subtotal>₹0</strong></div>
+    <a href="cart.html" class="btn btn--outline btn--full">View Cart</a>
+    <a href="checkout.html" class="btn btn--full">Checkout</a>
+  </div>
+</aside>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

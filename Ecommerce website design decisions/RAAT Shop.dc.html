@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Italiana&family=Inter:wght@400;500;600&display=swap">
+<style>
+  body{margin:0;background:#0C0B0A;color:#F4EEE2;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:#F4EEE2;text-decoration:none;}
+  a:hover{color:#C9A227;}
+  select{-webkit-appearance:none;appearance:none;}
+</style>
+</helmet>
+<div style="background:#0C0B0A;color:#F4EEE2;min-height:100vh">
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1440px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+      <a href="RAAT Home.dc.html" style="position:relative;width:110px;height:26px;overflow:hidden;display:block">
+        <span style="{{ raatStyleLatin }}">RAAT</span><span style="{{ raatStyleDev }}">रात</span>
+      </a>
+      <nav style="display:flex;gap:36px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase">
+        <a href="RAAT Shop.dc.html" style="color:#C9A227">Shop</a><a href="RAAT Collection.dc.html">Collections</a><a href="RAAT Journal.dc.html">Journal</a><a href="RAAT About.dc.html">About</a><a href="RAAT Contact.dc.html">Contact</a>
+      </nav>
+      <div style="display:flex;gap:24px;align-items:center;font-size:13px">
+        <span style="cursor:pointer">Search</span>
+        <a href="RAAT Cart.dc.html" style="position:relative;cursor:pointer">Cart<span style="position:absolute;top:-10px;right:-16px;background:#C9A227;color:#0C0B0A;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600">2</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div style="max-width:1440px;margin:0 auto;padding:160px 40px 40px">
+    <div class="rv" style="opacity:0;transform:translateY(20px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);margin-bottom:56px">
+      <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:#A79C8C;margin-bottom:12px">All Products</div>
+      <h1 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(2.25rem,4vw,3rem);margin:0 0 12px">Shop the Full Edit</h1>
+      <p style="color:#A79C8C;max-width:520px;margin:0">Handloom, hand-block, and zari craft, cut for a life after dark.</p>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid #2C2825;border-bottom:1px solid #2C2825;padding:20px 0;margin-bottom:16px">
+      <span style="font-size:0.85rem;color:#A79C8C">{{ resultCount }} results</span>
+      <div style="display:flex;gap:16px;align-items:center;position:relative">
+        <div style="position:relative">
+          <button onClick="{{ toggleFilter }}" style="{{ filterBtnStyle }}">Filters</button>
+          <sc-if value="{{ filterOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:280px;background:#151312;border:1px solid #2C2825;padding:24px;box-shadow:0 20px 40px rgba(0,0,0,0.5)">
+              <div style="margin-bottom:24px">
+                <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#A79C8C;margin-bottom:14px">Collection</div>
+                <sc-for list="{{ collectionNames }}" as="c" hint-placeholder-count="4">
+                  <label style="display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:0.85rem;cursor:pointer"><input type="checkbox" style="accent-color:#C9A227" />{{ c }}</label>
+                </sc-for>
+              </div>
+              <div style="margin-bottom:20px">
+                <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#A79C8C;margin-bottom:14px">Price</div>
+                <sc-for list="{{ priceRanges }}" as="p" hint-placeholder-count="3">
+                  <label style="display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:0.85rem;cursor:pointer"><input type="radio" name="price" style="accent-color:#C9A227" />{{ p }}</label>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:10px">
+                <button style="flex:1;background:#C9A227;color:#0C0B0A;border:none;padding:11px;font-size:0.75rem;letter-spacing:0.05em;text-transform:uppercase;font-weight:600;cursor:pointer">Apply</button>
+                <button style="flex:1;background:transparent;border:1px solid #2C2825;color:#F4EEE2;padding:11px;font-size:0.75rem;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer">Clear</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="position:relative">
+          <button onClick="{{ toggleSort }}" style="{{ sortBtnStyle }}">{{ sortLabel }} <span style="{{ sortCaretStyle }}">&#9662;</span></button>
+          <sc-if value="{{ sortOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:calc(100% + 8px);right:0;z-index:60;width:220px;background:#151312;border:1px solid #2C2825;box-shadow:0 20px 40px rgba(0,0,0,0.5)">
+              <sc-for list="{{ sortOptions }}" as="o" hint-placeholder-count="4">
+                <div onClick="{{ o.select }}" style="{{ o.style }}">{{ o.label }}</div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px">
+      <sc-for list="{{ activeFilters }}" as="f" hint-placeholder-count="2">
+        <span style="border:1px solid #2C2825;padding:6px 14px;font-size:0.75rem;color:#A79C8C;display:flex;align-items:center;gap:8px">{{ f }} <span style="cursor:pointer;color:#F4EEE2">&times;</span></span>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;padding-bottom:120px">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
+        <a href="RAAT Product.dc.html" class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);display:block">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px)">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center"><span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabel }}</span></div>
+          </div>
+          <div style="padding-top:16px">
+            <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:6px">{{ p.collection }}</div>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.05rem;margin:0 0 8px">{{ p.name }}</h3>
+            <div style="font-size:0.9rem">{{ p.price }}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <footer style="background:#151312;border-top:1px solid #2C2825;padding:64px 40px 32px">
+    <div style="max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center">
+      <div style="font-family:'Italiana',serif;font-size:1.1rem;letter-spacing:0.15em">RAAT</div>
+      <div style="font-size:0.75rem;color:#A79C8C">&copy; 2026 RAAT. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { headerScheme: 'transparent', headerHidden: false, glitchOn: false, script: 'latin', filterOpen: false, sortOpen: false, sort: 'Featured' };
+
+  componentDidMount() {
+    this._lastY = window.scrollY;
+    this._onScroll = () => {
+      const y = window.scrollY;
+      const scrolledDown = y > this._lastY;
+      const past = y > 80;
+      this.setState({ headerHidden: past && scrolledDown, headerScheme: past ? 'solid' : 'transparent' });
+      this._lastY = y;
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.style.cssText += ';opacity:1 !important;transform:none !important;'; });
+    }, { threshold: 0.12 });
+    this._observer = observer;
+    setTimeout(() => { document.querySelectorAll('.rv').forEach(el => observer.observe(el)); }, 50);
+    this._glitchLoop = () => {
+      this.setState({ glitchOn: true });
+      setTimeout(() => { this.setState(s => ({ glitchOn: false, script: s.script === 'latin' ? 'devanagari' : 'latin' })); }, 260);
+      this._glitchTimer = setTimeout(this._glitchLoop, 6000 + Math.random() * 4000);
+    };
+    this._glitchTimer = setTimeout(this._glitchLoop, 4000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._glitchTimer);
+  }
+  renderVals() {
+    const headerSolid = this.state.headerScheme === 'solid';
+    const headerStyle = `position:fixed;top:0;left:0;right:0;z-index:50;transition:transform 400ms cubic-bezier(0.16,1,0.3,1),background-color 400ms,backdrop-filter 400ms;transform:translateY(${this.state.headerHidden ? '-100%' : '0'});background:${headerSolid ? 'rgba(21,19,18,0.9)' : 'transparent'};backdrop-filter:${headerSolid ? 'blur(10px)' : 'none'};border-bottom:${headerSolid ? '1px solid #2C2825' : 'none'}`;
+    const g = this.state.glitchOn;
+    const showLatin = this.state.script === 'latin';
+    const latinVisible = g ? !showLatin : showLatin;
+    const devVisible = g ? showLatin : !showLatin;
+    const raatStyleLatin = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.15em;color:#F4EEE2;transition:opacity 100ms;opacity:${latinVisible?1:0};transform:${g?'translate(-3px,1px)':'none'};filter:${g?'drop-shadow(2px 0 #6E1423) drop-shadow(-2px 0 #C9A227)':'none'}`;
+    const raatStyleDev = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.1em;color:#C9A227;transition:opacity 100ms;opacity:${devVisible?1:0};transform:${g?'translate(2px,-1px)':'none'}`;
+
+    const collectionNames = ['Amavas', 'Neel', 'Zari', 'Sanjh'];
+    const items = [
+      ['Amavas Wrap Kurta', 'Amavas', '\u20b96,800'], ['Neel Midnight Saree', 'Neel', '\u20b98,400'],
+      ['Zari Thread Blouse', 'Zari', '\u20b911,200'], ['Sanjh Dusk Jacket', 'Sanjh', '\u20b99,600'],
+      ['Amavas Draped Skirt', 'Amavas', '\u20b97,200'], ['Neel Indigo Dupatta', 'Neel', '\u20b93,400'],
+      ['Zari Bordered Saree', 'Zari', '\u20b913,600'], ['Sanjh Twilight Kurta', 'Sanjh', '\u20b96,200'],
+    ];
+    const products = items.map(([name, collection, price]) => ({ name, collection, price, imageLabel: `PRODUCT PHOTO \u2014 ${name}` }));
+
+    const ddBtn = (open) => `background:transparent;border:1px solid ${open ? '#F4EEE2' : '#2C2825'};color:#F4EEE2;padding:10px 20px;font-size:0.8rem;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap`;
+    const sortNames = ['Featured', 'Price: Low to High', 'Price: High to Low', 'Newest'];
+    const sortOptions = sortNames.map(name => ({
+      label: name,
+      style: `padding:14px 18px;font-size:0.85rem;cursor:pointer;color:${this.state.sort === name ? '#F4EEE2' : '#A79C8C'};border-bottom:1px solid #2C2825`,
+      select: () => this.setState({ sort: name, sortOpen: false }),
+    }));
+
+    return {
+      headerStyle, raatStyleLatin, raatStyleDev,
+      resultCount: products.length,
+      products, collectionNames,
+      priceRanges: ['Under \u20b95,000', '\u20b95,000 \u2013 \u20b910,000', 'Above \u20b910,000'],
+      activeFilters: ['Zari'],
+      filterOpen: this.state.filterOpen,
+      toggleFilter: () => this.setState(s => ({ filterOpen: !s.filterOpen, sortOpen: false })),
+      filterBtnStyle: ddBtn(this.state.filterOpen),
+      sortOpen: this.state.sortOpen,
+      sortLabel: `Sort: ${this.state.sort}`,
+      sortBtnStyle: ddBtn(this.state.sortOpen),
+      sortCaretStyle: `display:inline-block;transition:transform 200ms;transform:rotate(${this.state.sortOpen ? '180deg' : '0deg'})`,
+      toggleSort: () => this.setState(s => ({ sortOpen: !s.sortOpen, filterOpen: false })),
+      sortOptions,
+    };
+  }
+}
+</script>
+</body>
+</html>

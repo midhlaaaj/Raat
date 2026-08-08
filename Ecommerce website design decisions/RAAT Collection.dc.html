@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Italiana&family=Inter:wght@400;500;600&display=swap">
+<style>body{margin:0;background:#0C0B0A;color:#F4EEE2;font-family:Inter,sans-serif;}a{color:#F4EEE2;text-decoration:none;}a:hover{color:#C9A227;}</style>
+</helmet>
+<div style="background:#0C0B0A;color:#F4EEE2;min-height:100vh">
+  <header style="{{ headerStyle }}">
+    <div style="max-width:1440px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between">
+      <a href="RAAT Home.dc.html" style="position:relative;width:110px;height:26px;overflow:hidden;display:block">
+        <span style="{{ raatStyleLatin }}">RAAT</span><span style="{{ raatStyleDev }}">रात</span>
+      </a>
+      <nav style="display:flex;gap:36px;font-size:13px;letter-spacing:0.05em;text-transform:uppercase">
+        <a href="RAAT Shop.dc.html">Shop</a><a href="RAAT Collection.dc.html" style="color:#C9A227">Collections</a><a href="RAAT Journal.dc.html">Journal</a><a href="RAAT About.dc.html">About</a><a href="RAAT Contact.dc.html">Contact</a>
+      </nav>
+      <div style="display:flex;gap:24px;align-items:center;font-size:13px">
+        <span style="cursor:pointer">Search</span>
+        <a href="RAAT Cart.dc.html" style="position:relative;cursor:pointer">Cart<span style="position:absolute;top:-10px;right:-16px;background:#C9A227;color:#0C0B0A;font-size:10px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600">2</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section style="position:relative;height:60vh;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+    <div class="rv" style="opacity:0;clip-path:inset(0 0 100% 0);transition:opacity 0.9s cubic-bezier(0,0,0.3,1),clip-path 0.9s cubic-bezier(0,0,0.3,1);position:absolute;inset:0;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 14px,#211d1a 14px,#211d1a 28px)">
+      <span style="position:absolute;bottom:24px;left:24px;font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">COLLECTION PHOTO \u2014 Amavas, full-bleed</span>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,10,0.2) 0%,rgba(12,11,10,0.7) 100%)"></div>
+    <div style="position:relative;text-align:center;padding:0 24px">
+      <div style="font-family:'Italiana',serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.2em;color:#A79C8C;margin-bottom:16px">Collection</div>
+      <h1 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2.5rem,5vw,4.5rem);margin:0 0 16px;color:#FFFFFF">Amavas</h1>
+      <p style="max-width:480px;margin:0 auto;color:#F4EEE2">New moon. The darkest night, worn — deep charcoal silhouettes with a single point of light.</p>
+    </div>
+  </section>
+
+  <div style="max-width:1440px;margin:0 auto;padding:80px 40px 120px">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
+        <a href="RAAT Product.dc.html" class="rv" style="opacity:0;transform:translateY(24px);transition:opacity 0.6s cubic-bezier(0,0,0.3,1),transform 0.6s cubic-bezier(0,0,0.3,1);display:block">
+          <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:repeating-linear-gradient(135deg,#1C1917,#1C1917 12px,#211d1a 12px,#211d1a 24px)">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center"><span style="font-family:monospace;font-size:10px;letter-spacing:0.06em;color:#A79C8C">{{ p.imageLabel }}</span></div>
+          </div>
+          <div style="padding-top:16px">
+            <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#A79C8C;margin-bottom:6px">Amavas</div>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.05rem;margin:0 0 8px">{{ p.name }}</h3>
+            <div style="font-size:0.9rem">{{ p.price }}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <footer style="background:#151312;border-top:1px solid #2C2825;padding:64px 40px 32px">
+    <div style="max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:center">
+      <div style="font-family:'Italiana',serif;font-size:1.1rem;letter-spacing:0.15em">RAAT</div>
+      <div style="font-size:0.75rem;color:#A79C8C">&copy; 2026 RAAT. All rights reserved.</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { headerScheme: 'transparent', headerHidden: false, glitchOn: false, script: 'latin' };
+  componentDidMount() {
+    this._lastY = window.scrollY;
+    this._onScroll = () => {
+      const y = window.scrollY;
+      const scrolledDown = y > this._lastY;
+      const past = y > window.innerHeight * 0.6;
+      this.setState({ headerHidden: past && scrolledDown, headerScheme: past ? 'solid' : 'transparent' });
+      this._lastY = y;
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.style.cssText += ';opacity:1 !important;transform:none !important;clip-path:inset(0 0 0% 0) !important;'; });
+    }, { threshold: 0.12 });
+    this._observer = observer;
+    setTimeout(() => { document.querySelectorAll('.rv').forEach(el => observer.observe(el)); }, 50);
+    this._glitchLoop = () => {
+      this.setState({ glitchOn: true });
+      setTimeout(() => { this.setState(s => ({ glitchOn: false, script: s.script === 'latin' ? 'devanagari' : 'latin' })); }, 260);
+      this._glitchTimer = setTimeout(this._glitchLoop, 6000 + Math.random() * 4000);
+    };
+    this._glitchTimer = setTimeout(this._glitchLoop, 4000);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._observer) this._observer.disconnect();
+    clearTimeout(this._glitchTimer);
+  }
+  renderVals() {
+    const headerSolid = this.state.headerScheme === 'solid';
+    const headerStyle = `position:fixed;top:0;left:0;right:0;z-index:50;transition:transform 400ms cubic-bezier(0.16,1,0.3,1),background-color 400ms,backdrop-filter 400ms;transform:translateY(${this.state.headerHidden ? '-100%' : '0'});background:${headerSolid ? 'rgba(21,19,18,0.9)' : 'transparent'};backdrop-filter:${headerSolid ? 'blur(10px)' : 'none'};border-bottom:${headerSolid ? '1px solid #2C2825' : 'none'}`;
+    const g = this.state.glitchOn;
+    const showLatin = this.state.script === 'latin';
+    const latinVisible = g ? !showLatin : showLatin;
+    const devVisible = g ? showLatin : !showLatin;
+    const raatStyleLatin = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.15em;color:#F4EEE2;transition:opacity 100ms;opacity:${latinVisible?1:0};transform:${g?'translate(-3px,1px)':'none'};filter:${g?'drop-shadow(2px 0 #6E1423) drop-shadow(-2px 0 #C9A227)':'none'}`;
+    const raatStyleDev = `position:absolute;inset:0;font-family:'Italiana',serif;font-size:1.15rem;letter-spacing:0.1em;color:#C9A227;transition:opacity 100ms;opacity:${devVisible?1:0};transform:${g?'translate(2px,-1px)':'none'}`;
+    const items = [['Amavas Wrap Kurta','\u20b96,800'],['Amavas Draped Skirt','\u20b97,200'],['Amavas Charcoal Blouse','\u20b95,600'],['Amavas Silk Saree','\u20b912,400'],['Amavas Tailored Jacket','\u20b910,800'],['Amavas Pleated Trouser','\u20b96,400'],['Amavas Sheer Dupatta','\u20b93,800'],['Amavas Wrap Dress','\u20b98,200']];
+    const products = items.map(([name, price]) => ({ name, price, imageLabel: `PRODUCT PHOTO \u2014 ${name}` }));
+    return { headerStyle, raatStyleLatin, raatStyleDev, products };
+  }
+}
+</script>
+</body>
+</html>
