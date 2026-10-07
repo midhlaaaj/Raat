@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { JOURNAL_ENTRIES, getJournalEntry } from "@/lib/data";
-import { ImageWipe, Reveal, TextSplit } from "@/components/reveal";
+import { ArrowLeft } from "lucide-react";
+import { JOURNAL_ENTRIES, PRODUCTS, getJournalEntry } from "@/lib/data";
+import { PRODUCT_GRID } from "@/lib/utils";
+import { readingTime } from "@/lib/journal";
+import { ProductCard } from "@/components/product-card";
+import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/reveal";
 
 export function generateStaticParams() {
   return JOURNAL_ENTRIES.map((e) => ({ slug: e.slug }));
@@ -17,35 +22,43 @@ export default async function JournalEntryPage({
   const entry = getJournalEntry(slug);
   if (!entry) notFound();
 
+  const index = JOURNAL_ENTRIES.indexOf(entry);
   const related = JOURNAL_ENTRIES.filter((e) => e.slug !== entry.slug).slice(0, 3);
+  // Rotate through the catalogue so each story shows a different edit.
+  const shopTheStory = [...PRODUCTS.slice(index * 4), ...PRODUCTS].slice(0, 5);
 
   return (
     <main>
-      <section className="relative flex h-[70vh] min-h-[460px] items-end justify-center overflow-hidden">
-        <ImageWipe className="absolute inset-0">
-          <Image src={entry.image} alt={entry.title} fill sizes="100vw" className="object-cover" />
-        </ImageWipe>
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(0deg, rgba(54,42,36,0.9) 0%, rgba(54,42,36,0.1) 60%)" }}
-        />
-        <div className="relative max-w-[760px] px-6 pb-12 text-center">
-          <div className="mb-4 text-xs uppercase tracking-[0.1em] text-gold">{entry.category}</div>
-          <h1 className="font-display mb-4 text-[clamp(2rem,4vw,3.25rem)] leading-[1.1] text-white">
-            <TextSplit text={entry.title} />
-          </h1>
-          <div className="text-sm text-header-ink/75">By the RAAT Studio · {entry.date}</div>
+      {/* Light title block, image below it -- no overlay */}
+      <header className="mx-auto max-w-[820px] px-6 pb-10 pt-12 text-center md:pt-16">
+        <Link
+          href="/journal"
+          className="mb-10 inline-flex items-center gap-2 text-sm text-ivory-muted transition-colors hover:text-ink"
+        >
+          <ArrowLeft size={15} /> All stories
+        </Link>
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-gold-deep">
+          {entry.category}
+        </p>
+        <h1 className="font-display mb-5 text-[clamp(2.2rem,5vw,3.75rem)] leading-[1.08] tracking-tight">
+          {entry.title}
+        </h1>
+        <p className="mx-auto mb-6 max-w-xl text-lg leading-relaxed text-ivory-muted">{entry.excerpt}</p>
+        <div className="text-sm text-ivory-muted">
+          By the RAAT Studio · {entry.date} · {readingTime(entry)} min read
         </div>
-        <div id="hero-sentinel" className="absolute bottom-0 h-px w-full" />
-      </section>
+      </header>
 
-      <article className="mx-auto max-w-[720px] px-6 py-20 text-[1.05rem] leading-[1.8]">
-        <p>{entry.body[0]}</p>
-        {entry.body.length > 1 && (
-          <Reveal className="relative my-10 aspect-video bg-bg-elevated">
-            <Image src={entry.image} alt="" fill sizes="720px" className="object-cover opacity-80" />
-          </Reveal>
-        )}
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+        <div className="relative aspect-[16/8] overflow-hidden rounded-xl bg-bg-elevated">
+          <Image src={entry.image} alt={entry.title} fill priority sizes="(max-width: 1200px) 100vw, 1200px" className="object-cover" />
+        </div>
+      </div>
+
+      <article className="mx-auto max-w-[680px] px-6 py-16 text-[1.075rem] leading-[1.85] md:py-20">
+        <p className="first-letter:font-display first-letter:float-left first-letter:mr-3 first-letter:text-[4.2rem] first-letter:leading-[0.8] first-letter:text-gold-deep">
+          {entry.body[0]}
+        </p>
         {entry.body.slice(1).map((p, i) => (
           <p key={i} className="mt-6">
             {p}
@@ -53,22 +66,33 @@ export default async function JournalEntryPage({
         ))}
       </article>
 
-      <div className="mx-auto max-w-[1440px] px-6 pb-28 md:px-10">
-        <h2 className="font-display mb-8 text-[clamp(1.5rem,3vw,2rem)]">Related Reading</h2>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-          {related.map((e) => (
-            <Link key={e.slug} href={`/journal/${e.slug}`} className="block">
-              <div className="relative aspect-[4/5] overflow-hidden bg-bg-elevated">
-                <Image src={e.image} alt={e.title} fill sizes="33vw" className="object-cover" />
-              </div>
-              <div className="pt-3.5">
-                <div className="mb-1.5 text-xs uppercase text-gold">{e.category}</div>
-                <h3 className="font-display text-base">{e.title}</h3>
-              </div>
-            </Link>
+      <section className="mx-auto max-w-[1440px] px-6 pb-20 md:px-10">
+        <SectionHeading title="Shop the Story" href="/shop" linkLabel="Shop All" />
+        <div className={PRODUCT_GRID}>
+          {shopTheStory.map((p) => (
+            <ProductCard key={p.id} product={p} />
           ))}
         </div>
-      </div>
+      </section>
+
+      <section className="border-t border-hairline bg-bg-low">
+        <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-10">
+          <SectionHeading title="Keep Reading" href="/journal" linkLabel="All Stories" />
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+            {related.map((e) => (
+              <Reveal key={e.slug}>
+                <Link href={`/journal/${e.slug}`} className="group block">
+                  <div className="relative mb-4 aspect-[3/2] overflow-hidden rounded-lg bg-bg-elevated">
+                    <Image src={e.image} alt={e.title} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                  </div>
+                  <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">{e.category}</p>
+                  <h3 className="font-display text-xl leading-snug transition-colors group-hover:text-gold-deep">{e.title}</h3>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

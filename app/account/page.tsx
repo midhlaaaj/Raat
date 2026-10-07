@@ -1,141 +1,105 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { formatPrice, CUSTOMER_NAME, MOCK_ORDERS, MOCK_ADDRESSES, MOCK_ACCOUNT, type OrderStatus } from "@/lib/data";
-import { Reveal } from "@/components/reveal";
+import Link from "next/link";
+import { ArrowRight, Heart, MapPin, Package } from "lucide-react";
+import { CUSTOMER_NAME, MOCK_ADDRESSES, MOCK_ORDERS, formatPrice } from "@/lib/data";
+import { useWishlist } from "@/lib/wishlist";
+import { OrderProgress, StatusBadge } from "@/components/account/order-bits";
 
-const TABS = ["Orders", "Addresses", "Account Details"] as const;
-type Tab = (typeof TABS)[number];
+export default function AccountOverviewPage() {
+  const { count } = useWishlist();
+  const latest = MOCK_ORDERS[0];
+  const defaultAddress = MOCK_ADDRESSES.find((a) => a.isDefault) ?? MOCK_ADDRESSES[0];
 
-function statusColor(status: OrderStatus) {
-  if (status === "Delivered") return "text-gold";
-  if (status === "Shipped") return "text-gold";
-  return "text-ivory-muted";
-}
-
-export default function AccountPage() {
-  const [tab, setTab] = useState<Tab>("Orders");
+  const stats = [
+    { label: "Orders", value: MOCK_ORDERS.length, href: "/account/orders", icon: Package },
+    { label: "Favourites", value: count, href: "/favourites", icon: Heart },
+    { label: "Addresses", value: MOCK_ADDRESSES.length, href: "/account/addresses", icon: MapPin },
+  ];
 
   return (
-    <main className="mx-auto max-w-[1100px] px-6 pb-28 pt-16 md:px-10 md:pt-20">
-      <div className="mb-14 flex items-start justify-between">
-        <div>
-          <p className="font-accent mb-3 text-sm uppercase tracking-[0.16em] text-ivory-muted">
-            Account
-          </p>
-          <h1 className="font-display text-[clamp(2.25rem,4vw,3rem)]">Hi, {CUSTOMER_NAME}</h1>
-        </div>
-        <button className="border border-hairline px-6 py-2.5 text-xs uppercase tracking-[0.05em] text-ivory hover:border-ivory">
-          Sign Out
-        </button>
-      </div>
+    <div>
+      <h1 className="font-display mb-1 text-[clamp(2rem,4vw,2.75rem)] leading-tight">
+        Hello, {CUSTOMER_NAME}
+      </h1>
+      <p className="mb-10 text-ivory-muted">Track orders, manage addresses and update your details.</p>
 
-      <div className="mb-10 flex gap-8 border-b border-hairline">
-        {TABS.map((t) => (
-          <button
-            key={t}
-            onClick={() => setTab(t)}
-            className={`relative pb-4 text-xs uppercase tracking-[0.08em] transition-colors ${
-              tab === t ? "text-ivory" : "text-ivory-muted hover:text-ivory"
-            }`}
+      <div className="mb-10 grid grid-cols-3 gap-3 md:gap-5">
+        {stats.map(({ label, value, href, icon: Icon }) => (
+          <Link
+            key={label}
+            href={href}
+            className="group rounded-xl border border-hairline p-4 transition-colors hover:border-ink md:p-6"
           >
-            {t}
-            {tab === t && <span className="absolute inset-x-0 -bottom-px h-[2px] bg-gold" />}
-          </button>
+            <Icon size={20} strokeWidth={1.5} className="mb-4 text-gold-deep" />
+            <div className="font-display text-3xl">{value}</div>
+            <div className="text-sm text-ivory-muted">{label}</div>
+          </Link>
         ))}
       </div>
 
-      {tab === "Orders" && (
-        <Reveal>
-          <div className="flex flex-col">
-            {MOCK_ORDERS.map((order) => (
-              <div
-                key={order.id}
-                className="flex items-center gap-6 border-b border-hairline py-8 first:pt-0"
-              >
-                <div className="relative aspect-square w-20 flex-shrink-0 overflow-hidden bg-bg-elevated">
-                  <Image
-                    src={order.items[0].product.images[0]}
-                    alt={order.items[0].product.name}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex-1">
-                  <div className="font-display text-lg">{order.id}</div>
-                  <div className="text-sm text-ivory-muted">
-                    {order.date} · {order.items.reduce((s, i) => s + i.qty, 0)} item
-                    {order.items.reduce((s, i) => s + i.qty, 0) > 1 ? "s" : ""}
-                  </div>
-                </div>
-                <div className={`text-xs uppercase tracking-[0.05em] ${statusColor(order.status)}`}>
-                  {order.status}
-                </div>
-                <div className="font-display w-24 text-right text-lg">
-                  {formatPrice(order.total)}
-                </div>
-              </div>
-            ))}
+      {/* Latest order with tracker */}
+      <section className="mb-10 rounded-xl border border-hairline">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-hairline px-5 py-4 md:px-6">
+          <div>
+            <div className="text-xs uppercase tracking-wider text-ivory-muted">Latest order</div>
+            <div className="font-medium">
+              #{latest.id} · {latest.date}
+            </div>
           </div>
-        </Reveal>
-      )}
+          <StatusBadge status={latest.status} />
+        </div>
+        <div className="px-5 py-6 md:px-6">
+          <div className="mb-8">
+            <OrderProgress status={latest.status} />
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex -space-x-3">
+              {latest.items.map(({ product }) => (
+                <div key={product.id} className="relative h-16 w-14 overflow-hidden rounded-md border-2 border-bg bg-bg-elevated">
+                  <Image src={product.images[0]} alt={product.name} fill sizes="56px" className="object-cover" />
+                </div>
+              ))}
+            </div>
+            <div className="flex-1 text-sm">
+              {latest.items.map((i) => i.product.name).join(", ")}
+            </div>
+            <div className="font-medium">{formatPrice(latest.total)}</div>
+          </div>
+        </div>
+        <Link
+          href="/account/orders"
+          className="flex items-center justify-between border-t border-hairline px-5 py-4 text-sm font-medium transition-colors hover:bg-bg-low md:px-6"
+        >
+          View all orders <ArrowRight size={16} />
+        </Link>
+      </section>
 
-      {tab === "Addresses" && (
-        <Reveal>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {MOCK_ADDRESSES.map((addr) => (
-              <div key={addr.label} className="border border-hairline p-6">
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="text-xs uppercase tracking-[0.05em] text-ivory-muted">
-                    {addr.label}
-                  </span>
-                  {addr.isDefault && (
-                    <span className="bg-gold px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.05em] text-ink">
-                      Default
-                    </span>
-                  )}
-                </div>
-                <p className="font-display mb-1 text-lg">{addr.name}</p>
-                {addr.lines.map((line) => (
-                  <p key={line} className="text-sm text-ivory-muted">
-                    {line}
-                  </p>
-                ))}
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      )}
-
-      {tab === "Account Details" && (
-        <Reveal>
-          <div className="max-w-md">
-            <div className="field mb-5">
-              <label className="mb-2 block text-xs uppercase tracking-[0.05em] text-ivory-muted">
-                Full Name
-              </label>
-              <input readOnly value={MOCK_ACCOUNT.name} className="raat-input" />
-            </div>
-            <div className="field mb-5">
-              <label className="mb-2 block text-xs uppercase tracking-[0.05em] text-ivory-muted">
-                Email
-              </label>
-              <input readOnly value={MOCK_ACCOUNT.email} className="raat-input" />
-            </div>
-            <div className="field mb-8">
-              <label className="mb-2 block text-xs uppercase tracking-[0.05em] text-ivory-muted">
-                Phone
-              </label>
-              <input readOnly value={MOCK_ACCOUNT.phone} className="raat-input" />
-            </div>
-            <button className="border border-ivory px-8 py-3 text-xs uppercase tracking-[0.05em] text-ivory hover:bg-ivory hover:text-bg">
-              Edit Details
-            </button>
-          </div>
-        </Reveal>
-      )}
-    </main>
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <section className="rounded-xl bg-bg-elevated p-6">
+          <div className="mb-3 text-xs uppercase tracking-wider text-ivory-muted">Default address</div>
+          <p className="mb-1 font-medium">{defaultAddress.name}</p>
+          {defaultAddress.lines.map((l) => (
+            <p key={l} className="text-sm text-ivory-muted">
+              {l}
+            </p>
+          ))}
+          <Link href="/account/addresses" className="text-link mt-5">
+            Manage
+          </Link>
+        </section>
+        <section className="rounded-xl bg-bg-elevated p-6">
+          <div className="mb-3 text-xs uppercase tracking-wider text-ivory-muted">Need help?</div>
+          <p className="mb-1 font-medium">Returns &amp; exchanges</p>
+          <p className="text-sm text-ivory-muted">
+            Start a return within 7 days of delivery, or reach our team any day 10am–7pm IST.
+          </p>
+          <Link href="/contact" className="text-link mt-5">
+            Contact us
+          </Link>
+        </section>
+      </div>
+    </div>
   );
 }

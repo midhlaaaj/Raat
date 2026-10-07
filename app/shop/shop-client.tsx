@@ -6,6 +6,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SlidersHorizontal, ChevronDown, X } from "lucide-react";
 import { PRODUCTS, getCollection } from "@/lib/data";
 import { ProductCard } from "@/components/product-card";
+import { PRODUCT_GRID } from "@/lib/utils";
+import { PageHeader } from "@/components/section-heading";
 import { FilterDrawer, type PriceRange } from "@/components/filter-drawer";
 
 type Sort = "featured" | "price-asc" | "price-desc" | "name-asc";
@@ -63,7 +65,7 @@ export function ShopClient() {
     if (categories.length === 1 && !collections.length) {
       return { title: categories[0], subtitle: `Shop the full ${categories[0]} edit.` };
     }
-    return { title: "Shop the Full Edit", subtitle: "Handloom, hand-block, and zari craft, cut for a life after dark." };
+    return { title: "Shop the Full Edit", subtitle: "Handloom, hand-block, and zari craft for every day." };
   })();
 
   const activeChips = [
@@ -83,20 +85,17 @@ export function ShopClient() {
   }
 
   return (
-    <main className="mx-auto max-w-[1440px] px-6 pb-28 pt-16 md:px-10 md:pt-20">
-      <div className="mb-14">
-        <p className="font-accent mb-3 text-sm uppercase tracking-[0.16em] text-ivory/90">All Products</p>
-        <h1 className="font-display mb-3 text-[clamp(2.25rem,4vw,3rem)]">{heading.title}</h1>
-        <p className="max-w-[520px] text-ivory-muted">{heading.subtitle}</p>
-      </div>
+    <main>
+      <PageHeader eyebrow="All Products" title={heading.title} subtitle={heading.subtitle} />
 
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-4 border-y border-hairline py-5">
+      <div className="mx-auto max-w-[1440px] px-6 pb-28 pt-10 md:px-10">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-hairline pb-5">
         <span className="text-sm text-ivory-muted">{items.length} results</span>
         <div className="flex items-center gap-4">
           <button
             onClick={() => setFilterOpen(true)}
-            className={`flex items-center gap-2 border px-5 py-2.5 text-sm uppercase tracking-[0.05em] ${
-              filterOpen ? "border-ivory" : "border-hairline"
+            className={`label-ui flex items-center gap-2 rounded border px-5 py-2.5 transition-colors hover:border-ink ${
+              filterOpen ? "border-ink" : "border-hairline-strong"
             }`}
           >
             <SlidersHorizontal size={14} /> Filters
@@ -104,28 +103,29 @@ export function ShopClient() {
           <div className="relative">
             <button
               onClick={() => setSortOpen((s) => !s)}
-              className={`flex items-center gap-2 border px-5 py-2.5 text-sm uppercase tracking-[0.05em] ${
-                sortOpen ? "border-ivory" : "border-hairline"
+              aria-expanded={sortOpen}
+              className={`label-ui flex items-center gap-2 rounded border px-5 py-2.5 transition-colors hover:border-ink ${
+                sortOpen ? "border-ink" : "border-hairline-strong"
               }`}
             >
               Sort: {SORT_LABELS[sort]}
               <ChevronDown size={14} className={`transition-transform ${sortOpen ? "rotate-180" : ""}`} />
             </button>
             {sortOpen && (
-              <div className="absolute right-0 top-[calc(100%+8px)] z-40 w-56 border border-hairline bg-bg-elevated shadow-xl">
+              <div className="absolute right-0 top-[calc(100%+8px)] z-40 w-56 overflow-hidden rounded-lg border border-hairline bg-bg shadow-[0px_12px_24px_rgba(166,124,82,0.12)]">
                 {(Object.keys(SORT_LABELS) as Sort[]).map((key) => (
-                  <div
+                  <button
                     key={key}
                     onClick={() => {
                       setSort(key);
                       setSortOpen(false);
                     }}
-                    className={`cursor-pointer border-b border-hairline px-4 py-3.5 text-sm ${
-                      sort === key ? "text-ivory" : "text-ivory-muted"
+                    className={`block w-full border-b border-hairline px-4 py-3.5 text-left text-sm last:border-b-0 hover:bg-bg-elevated ${
+                      sort === key ? "font-semibold text-ivory" : "text-ivory-muted"
                     }`}
                   >
                     {SORT_LABELS[key]}
-                  </div>
+                  </button>
                 ))}
               </div>
             )}
@@ -138,10 +138,10 @@ export function ShopClient() {
           {activeChips.map((chip) => (
             <span
               key={`${chip.type}-${chip.value}`}
-              className="flex items-center gap-2 bg-bg-elevated px-3.5 py-1.5 text-xs text-ivory-muted"
+              className="flex items-center gap-2 rounded-lg bg-bg-elevated px-3.5 py-1.5 text-xs text-ivory-muted"
             >
               {chip.label}
-              <button onClick={() => removeChip(chip.type, chip.value)} className="text-ivory">
+              <button aria-label={`Remove ${chip.label}`} onClick={() => removeChip(chip.type, chip.value)} className="text-ivory">
                 <X size={12} />
               </button>
             </span>
@@ -156,7 +156,7 @@ export function ShopClient() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35, ease: [0, 0, 0.3, 1] }}
-          className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8"
+          className={PRODUCT_GRID}
         >
           {items.map((p) => (
             <ProductCard key={p.id} product={p} />
@@ -184,6 +184,7 @@ export function ShopClient() {
           setPrice("all");
         }}
       />
+      </div>
     </main>
   );
 }

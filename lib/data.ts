@@ -58,33 +58,33 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: "amavas",
     name: "Amavas",
-    blurb: "New moon. The darkest hour, worn.",
+    blurb: "Clean silhouettes in soft charcoal.",
     description:
-      "New moon. The darkest night, worn — deep charcoal silhouettes with a single point of light.",
+      "Clean, easy silhouettes in soft charcoal and ivory, each finished with a single hand-worked gold detail.",
     image: img(5, 1200, 1500),
   },
   {
     slug: "neel",
     name: "Neel",
-    blurb: "Midnight indigo, deep and still.",
+    blurb: "Hand-dyed indigo, light and breathable.",
     description:
-      "Midnight indigo, deep and still — silhouettes dyed in slow, layered baths of natural indigo.",
+      "Hand-dyed indigo in breathable cottons — pieces dyed in slow, layered baths of natural indigo.",
     image: img(6, 1200, 1500),
   },
   {
     slug: "zari",
     name: "Zari",
-    blurb: "Gold thread catching low light.",
+    blurb: "Hand-embroidered gold thread work.",
     description:
-      "Gold thread catching low light — hand-embroidered zari work from Varanasi artisan partners.",
+      "Celebration pieces with hand-embroidered zari work from our Varanasi artisan partners.",
     image: img(7, 1200, 1500),
   },
   {
     slug: "sanjh",
     name: "Sanjh",
-    blurb: "Dusk, just before the dark.",
+    blurb: "Warm rust and plum for every day.",
     description:
-      "Dusk, just before the dark — warm rust and plum tones for the hour the light turns.",
+      "Warm rust and plum tones in relaxed, everyday shapes you can wear from morning to evening.",
     image: img(8, 1200, 1500),
   },
 ];
@@ -152,7 +152,7 @@ const RAW_PRODUCTS: Array<
 
   // Zari
   { name: "Zari Thread Blouse", collection: "zari", category: "Blouses", price: 11200, colors: ["Maroon", "Charcoal", "Gold"], tag: "trending", description: "A sleeveless hand-embroidered blouse in zari thread, tailored close through the body.", imgIndex: 13, imgIndexAlt: 14 },
-  { name: "Zari Bordered Saree", collection: "zari", category: "Sarees", price: 13600, colors: ["Maroon", "Gold"], description: "A handloom saree with a contrast zari-woven border, in breathable silk-cotton.", imgIndex: 15, imgIndexAlt: 16 },
+  { name: "Zari Bordered Saree", collection: "zari", category: "Sarees", price: 13600, colors: ["Maroon", "Gold"], tag: "trending", description: "A handloom saree with a contrast zari-woven border, in breathable silk-cotton.", imgIndex: 15, imgIndexAlt: 16 },
   { name: "Zari Embellished Lehenga", collection: "zari", category: "Lehengas", price: 18800, colors: ["Maroon", "Gold"], tag: "new", description: "A fully hand-embellished lehenga with all-over zari embroidery, built for evening.", imgIndex: 17, imgIndexAlt: 18 },
   { name: "Zari Wrap Kurta", collection: "zari", category: "Kurtas", price: 7600, colors: ["Gold", "Maroon"], description: "A wrap kurta finished with a hand-embroidered zari placket.", imgIndex: 19, imgIndexAlt: 20 },
   { name: "Zari Trim Dupatta", collection: "zari", category: "Accessories", price: 4200, colors: ["Gold"], description: "A silk dupatta with a hand-finished zari trim along both edges.", imgIndex: 21, imgIndexAlt: 22 },
@@ -174,7 +174,7 @@ export const PRODUCTS: Product[] = RAW_PRODUCTS.map((p) => {
     id: slug,
     slug,
     sizes: SIZES,
-    images: [img(p.imgIndex), img(p.imgIndexAlt)],
+    images: [img(p.imgIndex), img(p.imgIndexAlt), img(p.imgIndex + 7), img(p.imgIndexAlt + 11)],
   };
 });
 
@@ -186,12 +186,14 @@ export function getCollection(slug: string) {
   return COLLECTIONS.find((c) => c.slug === slug);
 }
 
-export function getRelatedProducts(product: Product, count = 4) {
-  return PRODUCTS.filter(
-    (p) =>
-      p.id !== product.id &&
-      (p.collection === product.collection || p.category === product.category)
-  ).slice(0, count);
+/** Same collection or category first, then backfilled from the rest of the catalogue. */
+export function getRelatedProducts(product: Product, count = 10) {
+  const others = PRODUCTS.filter((p) => p.id !== product.id);
+  const close = others.filter(
+    (p) => p.collection === product.collection || p.category === product.category
+  );
+  const rest = others.filter((p) => !close.includes(p));
+  return [...close, ...rest].slice(0, count);
 }
 
 export function formatPrice(value: number) {
@@ -201,8 +203,8 @@ export function formatPrice(value: number) {
 export type Testimonial = { quote: string; author: string };
 
 export const TESTIMONIALS: Testimonial[] = [
-  { quote: "RAAT understands that Indian fashion can be moody and modern at once.", author: "Vogue India" },
-  { quote: "The zari work under low light is unlike anything else on the market.", author: "Elle" },
+  { quote: "RAAT proves Indian craft can feel light, modern and effortless.", author: "Vogue India" },
+  { quote: "The zari work is unlike anything else on the market.", author: "Elle" },
   { quote: "Finally, ethnic wear that photographs like editorial, not ecommerce.", author: "Harper's Bazaar" },
 ];
 
@@ -365,4 +367,16 @@ export const MOCK_ACCOUNT = {
   name: "Ananya Rao",
   email: "ananya.rao@example.com",
   phone: "+91 98765 43210",
+};
+
+/** Swatch colours for the named product colours above. */
+export const COLOR_HEX: Record<string, string> = {
+  Charcoal: "#3d3b39",
+  Ivory: "#f1ebdd",
+  Black: "#151515",
+  Indigo: "#34467a",
+  Maroon: "#7a2a3a",
+  Gold: "#c9a253",
+  Rust: "#a8552f",
+  Plum: "#6a3a5c",
 };

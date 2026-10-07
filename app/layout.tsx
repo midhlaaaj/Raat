@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bodoni_Moda, Italiana, Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart-context";
+import { TrustBar } from "@/components/trust-bar";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col bg-bg text-ivory">
         <CartProvider>
           <SmoothScroll />
+          <TrustBar />
           <SiteHeader />
           {children}
           <SiteFooter />

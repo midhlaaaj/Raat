@@ -26,6 +26,8 @@ type CartContextValue = {
   count: number;
   subtotal: number;
   subtotalFormatted: string;
+  /** False until the saved cart has been read from localStorage. */
+  hydrated: boolean;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -102,6 +104,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     count,
     subtotal,
     subtotalFormatted: formatPrice(subtotal),
+    hydrated,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

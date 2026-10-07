@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Quote, Star } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/data";
 
 export function TestimonialsRotator() {
@@ -19,27 +20,34 @@ export function TestimonialsRotator() {
 
   return (
     <div
-      className="relative mx-auto h-[150px] max-w-[760px]"
+      className="mx-auto flex max-w-3xl flex-col items-center text-center"
       onMouseEnter={() => (paused.current = true)}
       onMouseLeave={() => (paused.current = false)}
     >
-      <AnimatePresence mode="wait">
-        <motion.blockquote
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
-          <p className="font-display mb-4 text-center text-2xl italic leading-snug text-ivory">
-            &ldquo;{t.quote}&rdquo;
-          </p>
-          <cite className="block text-center text-xs not-italic uppercase tracking-[0.05em] text-ivory-muted">
-            {t.author}
-          </cite>
-        </motion.blockquote>
-      </AnimatePresence>
+      <Quote size={36} strokeWidth={1.25} className="mb-6 text-gold" aria-hidden />
+      <div className="relative h-[200px] w-full md:h-[170px]" aria-live="polite">
+        <AnimatePresence mode="wait">
+          <motion.blockquote
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="absolute inset-0"
+          >
+            <p className="font-display text-[1.5rem] italic leading-snug md:text-[2rem]">
+              &ldquo;{t.quote}&rdquo;
+            </p>
+            <cite className="label-ui mt-5 block not-italic text-ivory-muted">{t.author}</cite>
+          </motion.blockquote>
+        </AnimatePresence>
+      </div>
+      <div className="mb-2 mt-4 flex gap-1 text-gold" aria-hidden>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star key={i} size={18} fill="currentColor" strokeWidth={0} />
+        ))}
+      </div>
+      <span className="label-ui text-ivory-muted">Based on 200+ Reviews</span>
     </div>
   );
 }

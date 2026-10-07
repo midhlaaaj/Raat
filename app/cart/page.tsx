@@ -5,13 +5,39 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCart } from "@/lib/cart-context";
 import { getProduct, formatPrice } from "@/lib/data";
+import { ShoppingBag } from "lucide-react";
+import { PageHeader } from "@/components/section-heading";
+import { EmptyState } from "@/components/empty-state";
 
 export default function CartPage() {
-  const { items, updateQty, removeItem, subtotalFormatted } = useCart();
+  const { items, updateQty, removeItem, subtotalFormatted, hydrated } = useCart();
+
+  if (!hydrated) {
+    return (
+      <main>
+        <PageHeader eyebrow="Your Bag" title="Your Cart" />
+        <div className="min-h-[50vh]" />
+      </main>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <main>
+        <PageHeader eyebrow="Your Bag" title="Your Cart" />
+        <EmptyState
+          icon={ShoppingBag}
+          title="Your cart is empty"
+          body="Nothing in here yet. Start with our new arrivals, or pick up where you left off in your favourites."
+        />
+      </main>
+    );
+  }
 
   return (
-    <main className="mx-auto max-w-[1100px] px-6 pb-28 pt-16 md:px-10 md:pt-20">
-      <h1 className="font-display mb-12 text-[clamp(2rem,4vw,2.5rem)]">Your Cart</h1>
+    <main>
+      <PageHeader eyebrow="Your Bag" title="Your Cart" />
+      <div className="mx-auto max-w-[1100px] px-6 pb-28 pt-12 md:px-10">
       <div className="grid grid-cols-1 items-start gap-16 md:grid-cols-[1.6fr_1fr]">
         <div>
           <AnimatePresence initial={false}>
@@ -28,16 +54,16 @@ export default function CartPage() {
                 >
                   <div className="flex items-stretch justify-between gap-5 border-b border-hairline py-6">
                     <div className="flex gap-5">
-                      <div className="relative aspect-square w-24 flex-shrink-0 bg-bg-elevated">
+                      <div className="relative aspect-square w-24 flex-shrink-0 overflow-hidden rounded-lg bg-bg-elevated">
                         <Image src={product.images[0]} alt={product.name} fill sizes="96px" className="object-cover" />
                       </div>
                       <div>
                         <div className="font-display mb-1 text-[1.1rem]">{product.name}</div>
                         <div className="mb-5 text-sm text-ivory-muted">{item.color} / {item.size}</div>
-                        <div className="flex items-center border border-hairline">
-                          <button className="h-8 w-8" onClick={() => updateQty(index, item.qty - 1)}>−</button>
+                        <div className="flex w-max items-center rounded border border-hairline-strong">
+                          <button aria-label="Decrease quantity" className="h-8 w-8" onClick={() => updateQty(index, item.qty - 1)}>−</button>
                           <span className="w-7 text-center text-sm">{item.qty}</span>
-                          <button className="h-8 w-8" onClick={() => updateQty(index, item.qty + 1)}>+</button>
+                          <button aria-label="Increase quantity" className="h-8 w-8" onClick={() => updateQty(index, item.qty + 1)}>+</button>
                         </div>
                       </div>
                     </div>
@@ -48,24 +74,16 @@ export default function CartPage() {
                       >
                         Remove
                       </button>
-                      <span className="text-sm">{formatPrice(product.price * item.qty)}</span>
+                      <span className="text-sm font-semibold text-gold-deep">{formatPrice(product.price * item.qty)}</span>
                     </div>
                   </div>
                 </motion.div>
               );
             })}
           </AnimatePresence>
-          {items.length === 0 && (
-            <p className="py-10 text-ivory-muted">
-              Your cart is empty.{" "}
-              <Link href="/shop" className="text-gold underline">
-                Continue shopping
-              </Link>
-            </p>
-          )}
         </div>
 
-        <div className="bg-bg-elevated p-8">
+        <div className="rounded-xl bg-bg-elevated p-8 md:sticky md:top-28">
           <h3 className="font-display mb-6 text-xl">Order Summary</h3>
           <div className="mb-3 flex justify-between text-sm text-ivory-muted">
             <span>Subtotal</span>
@@ -81,11 +99,12 @@ export default function CartPage() {
           </div>
           <Link
             href="/checkout"
-            className="block bg-gold py-4 text-center text-sm font-semibold uppercase tracking-[0.05em] text-ink"
+            className="btn-primary w-full"
           >
             Checkout
           </Link>
         </div>
+      </div>
       </div>
     </main>
   );

@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { COLLECTIONS, PRODUCTS, getCollection } from "@/lib/data";
+import { PRODUCT_GRID } from "@/lib/utils";
 import { ProductCard } from "@/components/product-card";
-import { ImageWipe, StaggerGrid, StaggerItem } from "@/components/reveal";
+import { CollectionSwitcher } from "@/components/collection-switcher";
+import { Reveal, StaggerGrid, StaggerItem } from "@/components/reveal";
 
 export function generateStaticParams() {
   return COLLECTIONS.map((c) => ({ slug: c.slug }));
@@ -21,25 +23,34 @@ export default async function CollectionPage({
 
   return (
     <main>
-      {/* Simple title-card hero -- image-wipe only, no hero-zoom (distinct from Home) */}
-      <section className="relative flex h-[60vh] min-h-[420px] items-center justify-center overflow-hidden">
-        <ImageWipe className="absolute inset-0">
-          <Image src={collection.image} alt={collection.name} fill sizes="100vw" className="object-cover" />
-        </ImageWipe>
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(180deg, rgba(54,42,36,0.35) 0%, rgba(54,42,36,0.8) 100%)" }}
-        />
-        <div className="relative px-6 text-center">
-          <p className="font-accent mb-4 text-sm uppercase tracking-[0.18em] text-header-ink/90">Collection</p>
-          <h1 className="font-display mb-4 text-[clamp(2.5rem,5vw,4.5rem)] text-white">{collection.name}</h1>
-          <p className="mx-auto max-w-[480px] text-header-ink/85">{collection.description}</p>
+      {/* Light header: switcher first, then the collection intro beside its image */}
+      <section className="border-b border-hairline bg-bg-low">
+        <div className="mx-auto max-w-[1440px] px-6 pt-8 md:px-10 md:pt-10">
+          <CollectionSwitcher active={collection.slug} />
         </div>
-        <div id="hero-sentinel" className="absolute bottom-0 h-px w-full" />
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-[1fr_1.2fr] md:gap-16 md:px-10 md:py-14">
+          <Reveal>
+            <p className="eyebrow mb-4">Collection · {items.length} pieces</p>
+            <h1 className="font-display mb-4 text-[clamp(2.5rem,5vw,4rem)] leading-none">
+              {collection.name}
+            </h1>
+            <p className="max-w-md leading-relaxed text-ivory-muted">{collection.description}</p>
+          </Reveal>
+          <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-bg-elevated">
+            <Image
+              src={collection.image}
+              alt={collection.name}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 55vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
       </section>
 
-      <div className="mx-auto max-w-[1440px] px-6 py-20 md:px-10">
-        <StaggerGrid className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+      <div className="mx-auto max-w-[1440px] px-6 py-14 md:px-10 md:py-20">
+        <StaggerGrid className={PRODUCT_GRID}>
           {items.map((p) => (
             <StaggerItem key={p.id}>
               <ProductCard product={p} />

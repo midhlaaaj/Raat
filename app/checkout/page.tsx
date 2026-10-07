@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
+import { Lock } from "lucide-react";
 import { getProduct, formatPrice } from "@/lib/data";
+import { PageHeader } from "@/components/section-heading";
 
 export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart();
@@ -13,9 +15,7 @@ export default function CheckoutPage() {
   if (placed) {
     return (
       <main className="mx-auto max-w-[560px] px-6 py-40 text-center">
-        <p className="font-accent mb-5 text-sm uppercase tracking-[0.18em] text-ivory/90">
-          Order Confirmed
-        </p>
+        <p className="eyebrow mb-5">Order Confirmed</p>
         <h1 className="font-display mb-5 text-4xl">Thank you.</h1>
         <p className="mb-10 text-ivory-muted">
           Your order #RA-{orderNumber} is being prepared by our
@@ -23,7 +23,7 @@ export default function CheckoutPage() {
         </p>
         <Link
           href="/"
-          className="inline-block border border-ivory px-8 py-3.5 text-[13px] uppercase tracking-[0.08em] text-ivory"
+          className="btn-outline"
         >
           Continue Shopping
         </Link>
@@ -32,11 +32,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <main className="mx-auto max-w-[1100px] px-6 pb-28 pt-16 md:px-10">
-      <div className="mb-2 text-center text-xs uppercase tracking-[0.05em] text-ivory-muted">
-        Secure Checkout
-      </div>
-      <div className="grid grid-cols-1 items-start gap-16 pt-10 md:grid-cols-[1.4fr_1fr]">
+    <main>
+      <PageHeader eyebrow="Secure Checkout" title="Checkout" />
+      <div className="mx-auto max-w-[1100px] px-6 pb-28 md:px-10">
+      <div className="grid grid-cols-1 items-start gap-16 pt-12 md:grid-cols-[1.4fr_1fr]">
         <form
           className="flex flex-col gap-8"
           onSubmit={(e) => {
@@ -70,13 +69,13 @@ export default function CheckoutPage() {
           <button
             type="submit"
             disabled={items.length === 0}
-            className="bg-gold py-[18px] text-sm font-semibold uppercase tracking-[0.06em] text-ink disabled:opacity-40"
+            className="btn-primary !py-[18px]"
           >
-            Place Order
+            <Lock size={14} aria-hidden /> Place Order
           </button>
         </form>
 
-        <div className="bg-bg-elevated p-8">
+        <div className="rounded-xl bg-bg-elevated p-8 md:sticky md:top-28">
           <h3 className="font-display mb-6 text-xl">Order Summary</h3>
           {items.map((item, i) => {
             const product = getProduct(item.productId);
@@ -97,6 +96,7 @@ export default function CheckoutPage() {
             <span>{formatPrice(subtotal)}</span>
           </div>
         </div>
+      </div>
       </div>
     </main>
   );

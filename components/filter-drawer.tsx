@@ -36,17 +36,17 @@ export function FilterDrawer({
         style={{ transitionDuration: "450ms" }}
       >
         <SheetHeader className="border-b border-hairline px-6 py-5">
-          <SheetTitle className="font-display text-lg text-ivory">Filter &amp; Sort</SheetTitle>
+          <SheetTitle className="font-display text-xl text-ivory">Filter &amp; Sort</SheetTitle>
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto px-6 py-2">
           <div className="mb-8">
-            <h4 className="mb-3 text-xs uppercase tracking-[0.05em] text-ivory-muted">Category</h4>
+            <h4 className="label-ui mb-3 text-ivory-muted">Category</h4>
             {CATEGORIES.map((c) => (
               <label key={c} className="mb-2.5 flex items-center gap-2.5 text-sm cursor-pointer">
                 <input
                   type="checkbox"
-                  className="accent-gold"
+                  className="accent-[#86603a]"
                   checked={categories.includes(c)}
                   onChange={() => toggleCategory(c)}
                 />
@@ -55,12 +55,12 @@ export function FilterDrawer({
             ))}
           </div>
           <div className="mb-8">
-            <h4 className="mb-3 text-xs uppercase tracking-[0.05em] text-ivory-muted">Collection</h4>
+            <h4 className="label-ui mb-3 text-ivory-muted">Collection</h4>
             {COLLECTIONS.map((c) => (
               <label key={c.slug} className="mb-2.5 flex items-center gap-2.5 text-sm cursor-pointer">
                 <input
                   type="checkbox"
-                  className="accent-gold"
+                  className="accent-[#86603a]"
                   checked={collections.includes(c.slug)}
                   onChange={() => toggleCollection(c.slug)}
                 />
@@ -69,7 +69,7 @@ export function FilterDrawer({
             ))}
           </div>
           <div className="mb-6">
-            <h4 className="mb-3 text-xs uppercase tracking-[0.05em] text-ivory-muted">Price</h4>
+            <h4 className="label-ui mb-3 text-ivory-muted">Price</h4>
             {(
               [
                 ["all", "Any price"],
@@ -82,7 +82,7 @@ export function FilterDrawer({
                 <input
                   type="radio"
                   name="price"
-                  className="accent-gold"
+                  className="accent-[#86603a]"
                   checked={price === value}
                   onChange={() => setPrice(value)}
                 />
@@ -94,13 +94,13 @@ export function FilterDrawer({
 
         <SheetFooter className="border-t border-hairline px-6 py-5">
           <button
-            className="mb-2 w-full bg-gold py-3 text-xs font-semibold uppercase tracking-[0.05em] text-ink"
+            className="btn-primary mb-2 w-full !py-3"
             onClick={onApply}
           >
             Apply Filters
           </button>
           <button
-            className="w-full border border-hairline py-3 text-xs uppercase tracking-[0.05em] text-ivory"
+            className="btn-outline w-full !py-3"
             onClick={onClear}
           >
             Clear All

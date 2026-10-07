@@ -37,7 +37,7 @@ export function LogoGlitch({ className }: { className?: string }) {
       aria-label="RAAT"
     >
       <span
-        className="font-accent absolute inset-0 text-[2.3rem] tracking-[0.12em] text-ivory transition-opacity duration-100"
+        className="font-accent absolute inset-0 text-[2.3rem] tracking-[0.12em] text-current transition-opacity duration-100"
         style={{
           opacity: latinVisible ? 1 : 0,
           transform: glitching ? "translate(-3px, 1px)" : "none",
@@ -49,7 +49,7 @@ export function LogoGlitch({ className }: { className?: string }) {
         RAAT
       </span>
       <span
-        className="font-accent absolute inset-0 text-[2.3rem] tracking-[0.08em] text-ivory transition-opacity duration-100"
+        className="font-accent absolute inset-0 text-[2.3rem] tracking-[0.08em] text-current transition-opacity duration-100"
         style={{
           opacity: devVisible ? 1 : 0,
           transform: glitching ? "translate(2px, -1px)" : "none",

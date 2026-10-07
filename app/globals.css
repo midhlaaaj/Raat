@@ -19,6 +19,9 @@
   --color-ivory: var(--ivory);
   --color-ivory-muted: var(--ivory-muted);
   --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-bg-low: var(--bg-low);
+  --color-hairline-strong: var(--hairline-strong);
   --color-maroon: var(--maroon);
   --color-ink: var(--ink);
   --color-header-ink: var(--header-ink);
@@ -60,19 +63,22 @@
 }
 
 :root {
-  /* RAAT design tokens (design.md ~1) -- pastel palette, 2026-08-09 */
-  --bg: #fbf3ee;
-  --bg-elevated: #f2ddc9;
-  --surface: #e9caab;
-  --hairline: #d9b78f;
-  --ink: #362a24;
-  --ivory: #362a24;
-  --header-ink: #f4eee2;
-  --ivory-muted: #776254;
-  --gold: #d28f60;
+  /* RAAT design tokens -- "Artisan Ochre": warm ivory ground, charcoal ink, ochre accent */
+  --bg: #fdfaf5;
+  --bg-low: #f7f3eb;
+  --bg-elevated: #f1eee5;
+  --surface: #ebe8e0;
+  --hairline: #e5e2da;
+  --hairline-strong: #c7c7bf;
+  --ink: #282421;
+  --ivory: #282421;
+  --header-ink: #fdfaf5;
+  --ivory-muted: #5e5e5b;
+  --gold: #a67c52;
+  --gold-deep: #86603a;
   --maroon: #a85e7e;
 
-  /* shadcn tokens mapped onto the RAAT palette -- single pastel theme, no dark mode */
+  /* shadcn tokens mapped onto the RAAT palette -- single light theme, no dark mode */
   --background: var(--bg);
   --foreground: var(--ivory);
   --card: var(--surface);
@@ -91,7 +97,7 @@
   --border: var(--hairline);
   --input: var(--hairline);
   --ring: var(--gold);
-  --radius: 0.125rem;
+  --radius: 0.5rem;
   --sidebar: var(--bg-elevated);
   --sidebar-foreground: var(--ivory);
   --sidebar-primary: var(--ivory);
@@ -137,19 +143,92 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  .eyebrow {
+    font-family: var(--font-accent), serif;
+    font-size: 0.8rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .label-ui {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 1rem 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background-color 300ms, color 300ms;
+  }
+  .btn-primary:hover {
+    background: var(--gold-deep);
+  }
+  .btn-primary:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 0.9rem 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background-color 300ms, color 300ms;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .text-link {
+    display: inline-block;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 300ms, border-color 300ms;
+  }
+  .text-link:hover {
+    color: var(--gold-deep);
+    border-color: var(--gold-deep);
+  }
   .raat-input {
-    background: transparent;
-    border: 1px solid var(--hairline);
+    background: var(--bg-elevated);
+    border: 1px solid transparent;
+    border-bottom-color: var(--hairline-strong);
+    border-radius: 0.25rem;
     color: var(--ivory);
     padding: 14px 16px;
     font-size: 0.9rem;
     width: 100%;
+    transition: border-color 200ms;
   }
   .raat-input::placeholder {
-    color: #6b6357;
+    color: #77736c;
   }
   .raat-input:focus {
-    outline: 1px solid var(--ivory);
-    outline-offset: 1px;
+    outline: none;
+    border-bottom-color: var(--gold);
   }
 }
